@@ -1,13 +1,7 @@
-import React from "react";
+import { ButtonProps } from "../../types/propTypes";
 import "./Button.css"
 
-interface Props {
-  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  children?: React.ReactNode;
-  disabled?: boolean;
-};
-
-export default function Button({ onClick, children, disabled }: Props) {
+export default function Button({ onClick, children, disabled }: ButtonProps) {
   return (
     <button className="button" onClick={onClick} disabled={disabled} >
       {children}

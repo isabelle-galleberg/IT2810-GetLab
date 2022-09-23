@@ -1,12 +1,7 @@
 import "./TextField.css"
 import React from "react"
 
-interface Props {
-  placeholder?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
-
-export default function FormInput({ onChange, placeholder }: Props) {
+export default function FormInput({ onChange, placeholder }: TextFieldProps) {
   return (
     <div className="wrapperInput">
       <input className="inputField" onChange={onChange} placeholder={placeholder} ></input>
