@@ -1,39 +1,54 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CommitCardProps } from "../../types/propTypes";
 import "./CommitCard.css";
 import { CgMoreR } from "react-icons/cg";
 
 export default function CommitCard({
+	id,
 	message,
 	dateAuthored,
 	profileName,
 	profileImage,
 }: CommitCardProps) {
-	const [isActive, setActive] = useState(false);
+	const [completeMessage, setCompleteMessage] = useState(false);
+	const [overflow, setOverflow] = useState(false);
 
-	function isOverflown(element: any) {
-		console.log(element.scrollWidth);
-		return element.scrollWidth > element.clientWidth;
-	}
+	// if commit message causes overflow, add "show more" button to commit card
+	useEffect(() => {
+		let commitCard = document.getElementById(`commitCard${id}`);
+		let commitMessage = document.getElementById(`message${id}`);
+		if (
+			commitMessage &&
+			commitCard &&
+			commitMessage.scrollWidth > commitCard.clientWidth
+		) {
+			setOverflow(true);
+		}
+	}, []);
 
-	const handleToggle = () => {
-		let card = document.getElementById("message");
-		console.log(isOverflown(card));
-
-		if (isActive) {
-			setActive(false);
+	// show the complete commit message when "show more" button is clicked
+	const showMessageOverflow = () => {
+		if (completeMessage) {
+			setCompleteMessage(false);
 		} else {
-			setActive(true);
+			setCompleteMessage(true);
 		}
 	};
 
 	return (
-		<div id="cm" className="commitCard">
+		<div id={`commitCard${id}`} className="commitCard">
 			<div className="commitMessage">
-				<p id="message" className={isActive ? "fullMessage" : "message"}>
+				<p
+					id={`message${id}`}
+					className={completeMessage ? "completeMessage" : "message"}
+				>
 					{message}
 				</p>
-				<CgMoreR onClick={handleToggle} className="showMoreIcon" />
+				{overflow ? (
+					<CgMoreR onClick={showMessageOverflow} className="showMoreIcon" />
+				) : (
+					""
+				)}
 			</div>
 			<div className="commitInfo">
 				<img className="profileImage" src={profileImage} alt="profileImage" />
