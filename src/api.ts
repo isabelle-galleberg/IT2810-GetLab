@@ -1,27 +1,49 @@
-export interface User {
-    name: string
-    age: string
+import { useState } from "react";
+
+export function getBranches(projecID: number): Promise<unknown> {
+
+    return fetch('https://gitlab.com/api/v4/projects/' + projecID.toString() +'/repository/branches')
+        .then(response => response.json())
+        .then(response => {
+            return response as unknown;
+        })
 }
 
-export function getUsers(): Promise<User[]> {
+export function getAllCommits(projecID: number): Promise<unknown> {
 
-    // For now, consider the data is stored on a static `users.json` file
-    return fetch('test.json')
-            // the JSON body is taken from the response
-            .then(res => res.json())
-            .then(res => {
-                    // The response has an `any` type, so we need to cast
-                    // it to the `User` type, and return it from the promise
-                    return res as User[]
-            })
+    return fetch('https://gitlab.com/api/v4/projects/' + projecID.toString() +'/repository/commits')
+        .then(response => response.json())
+        .then(response => {
+            return response as unknown;
+        })
 }
 
-const result = document.getElementById('result')
-getUsers()
-    .then(users => {
-        if (result!=null) {
-            result.innerHTML = users.map(u => u.name).toString()
-        }
-    })
+export function getCommitsByBranch(projecID: number, branchName: string): Promise<unknown> {
 
-console.log('Hello, world!');
+    return fetch('https://gitlab.com/api/v4/projects/' + projecID.toString() +'/repository/commits?ref_name=' + branchName)
+        .then(response => response.json())
+        .then(response => {
+            return response as unknown;
+        })
+}
+
+
+export function getAllIssues(projecID: number): Promise<unknown> {
+
+    return fetch('https://gitlab.com/api/v4/projects/' + projecID.toString() +'/repository/issues')
+        .then(response => response.json())
+        .then(response => {
+            return response as unknown;
+        })
+}
+
+export function getIssuesByLabels(projecID: number, labelList: string[]): Promise<unknown> {
+
+    const labelString = labelList.join(',');
+
+    return fetch('https://gitlab.com/api/v4/projects/' + projecID.toString() +'/repository/issues?labels=' + labelString)
+        .then(response => response.json())
+        .then(response => {
+            return response as unknown;
+        })
+}
