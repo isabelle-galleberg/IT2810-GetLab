@@ -44,6 +44,7 @@ export default function MainPage() {
 				{dummyData.map((res: any) => {
 					return (
 						<CommitCard
+							key={res.id}
 							id={res.id}
 							message={res.message}
 							dateAuthored={res.authored}
