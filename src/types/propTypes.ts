@@ -10,3 +10,11 @@ export interface TextFieldProps {
   placeholder?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
+
+export interface CommitCardProps {
+	id: number;
+	message: string;
+	dateAuthored: string;
+	profileName: string;
+	profileImage: any;
+}
