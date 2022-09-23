@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import "./StartPage.css"
 import Button from "../../components/Button/Button";
-import FormInput from "../../components/TextField/TextField";
+import TextField from "../../components/TextField/TextField";
 
 
 export default function StartPage() {
@@ -42,8 +42,8 @@ export default function StartPage() {
       <h3>Please enter your credentials</h3>
       <div className="formWrapper">
         <form>
-          <FormInput onChange={e => changeName(e)} placeholder="Project ID"></FormInput>
-          <FormInput onChange={e => changeApi(e)} placeholder="Access token"></FormInput>
+          <TextField onChange={e => changeName(e)} placeholder="Project ID"></TextField>
+          <TextField onChange={e => changeApi(e)} placeholder="Access token"></TextField>
           <Button onClick={e => onConnect(e)} disabled={false}>Connect</Button>
           {errorMessage &&
             <p className="errorMessage">
