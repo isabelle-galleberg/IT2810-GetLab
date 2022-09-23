@@ -3,6 +3,7 @@ export interface LayoutProps {
 }
 
 export interface CommitCardProps {
+	id: number;
 	message: string;
 	dateAuthored: string;
 	profileName: string;
