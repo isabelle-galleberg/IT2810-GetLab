@@ -7,7 +7,9 @@ function App() {
   return (
     <div className="container">
       <header>
-        <img className="getLabLogo" src={require("./assets/logo.png")} alt="" />
+        <a href="/">
+          <img className="getLabLogo" src={require("./assets/logo.png")} alt="" />
+        </a>
         <h1>Get your GitLab data with GetLab!</h1>
       </header>
       <main>
