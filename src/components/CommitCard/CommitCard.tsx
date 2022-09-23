@@ -44,10 +44,8 @@ export default function CommitCard({
 				>
 					{message}
 				</p>
-				{overflow ? (
+				{overflow && (
 					<CgMoreR onClick={showMessageOverflow} className="showMoreIcon" />
-				) : (
-					""
 				)}
 			</div>
 			<div className="commitInfo">
