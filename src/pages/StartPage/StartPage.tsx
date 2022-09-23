@@ -1,7 +1,8 @@
 import React, { useState } from "react"
 import "./StartPage.css"
-import Button from "../components/button/Button";
-import FormInput from "../components/textField/TextField";
+import Button from "../../components/Button/Button";
+import FormInput from "../../components/TextField/TextField";
+
 
 export default function StartPage() {
   const [projectID, setProjectID] = useState<string | null>(null);
@@ -39,11 +40,11 @@ export default function StartPage() {
     <div className="credentialsContainer">
       <h1>Welcome to GetLab!</h1>
       <h3>Please enter your credentials</h3>
-      <div id="" className="formWrapper">
+      <div className="formWrapper">
         <form>
           <FormInput onChange={e => changeName(e)} placeholder="Project ID"></FormInput>
           <FormInput onChange={e => changeApi(e)} placeholder="Access token"></FormInput>
-          <Button onClick={(e) => onConnect(e)} disabled={false}>Connect</Button>
+          <Button onClick={e => onConnect(e)} disabled={false}>Connect</Button>
           {errorMessage &&
             <p className="errorMessage">
               Empty input field, fill in your credentials!
