@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { CommitCardProps } from "../../types/propTypes";
 import "./CommitCard.css";
+import { CgMoreR } from "react-icons/cg";
 
 export default function CommitCard({
 	message,
@@ -7,13 +9,35 @@ export default function CommitCard({
 	profileName,
 	profileImage,
 }: CommitCardProps) {
-	
+	const [isActive, setActive] = useState(false);
+
+	function isOverflown(element: any) {
+		console.log(element.scrollWidth);
+		return element.scrollWidth > element.clientWidth;
+	}
+
+	const handleToggle = () => {
+		let card = document.getElementById("message");
+		console.log(isOverflown(card));
+
+		if (isActive) {
+			setActive(false);
+		} else {
+			setActive(true);
+		}
+	};
+
 	return (
-		<div className="commitCard">
-			<p className="message">{message}</p>
+		<div id="cm" className="commitCard">
+			<div className="commitMessage">
+				<p id="message" className={isActive ? "fullMessage" : "message"}>
+					{message}
+				</p>
+				<CgMoreR onClick={handleToggle} className="showMoreIcon" />
+			</div>
 			<div className="commitInfo">
 				<img className="profileImage" src={profileImage} alt="profileImage" />
-				<p>{profileName}</p>
+				<p className="profileName">{profileName}</p>
 				<p className="authored">{`commited on ${dateAuthored}`}</p>
 			</div>
 		</div>

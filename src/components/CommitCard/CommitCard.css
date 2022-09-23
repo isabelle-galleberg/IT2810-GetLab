@@ -7,12 +7,29 @@
 	flex-direction: column;
 	gap: 10px;
 	padding: 10px;
-	height: 75px;
+	height: 70px;
+	width: clamp(220px, calc(75vw), 800px);
+}
+
+.commitMessage {
+	display: flex;
+	flex-direction: row;
+	gap: 10px;
+}
+
+.message,
+.fullMessage {
+	font-weight: bold;
 }
 
 .message {
-	font-weight: bold;
-	font-size: 20px;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.fullMessage {
+	overflow: visible;
+	white-space: normal;
 }
 
 .commitInfo {
@@ -35,4 +52,30 @@ p {
 
 .authored {
 	color: grey;
+}
+
+.showMoreIcon {
+	cursor: pointer;
+	min-width: 16px;
+	min-height: 16px;
+}
+
+@media screen and (min-width: 500px) {
+	.message {
+		font-size: 16px;
+	}
+	.authored,
+	.profileName {
+		font-size: 14px;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.message {
+		font-size: 14px;
+	}
+	.authored,
+	.profileName {
+		font-size: 12px;
+	}
 }

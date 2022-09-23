@@ -3,28 +3,29 @@ import "./MainPage.css";
 
 const dummyData = [
 	{
-		message: "docs: styling backend readme",
+		message: "docs: styling backend readme hallo",
 		authored: "2021-03-01",
 		profileName: "Shomlings",
 		profileImage:
 			"https://gitlab.stud.idi.ntnu.no/uploads/-/system/user/avatar/9754/avatar.png?width=192",
 	},
 	{
-		message: "docs: styling backend readme",
+		message: "docs: styling backend readme hei",
 		authored: "2021-03-01",
 		profileName: "Shomlings",
 		profileImage:
 			"https://gitlab.stud.idi.ntnu.no/uploads/-/system/user/avatar/9754/avatar.png?width=192",
 	},
 	{
-		message: "docs: styling backend readme",
+		message: "docs: styling",
 		authored: "2021-03-01",
 		profileName: "Shomlings",
 		profileImage:
 			"https://gitlab.stud.idi.ntnu.no/uploads/-/system/user/avatar/9754/avatar.png?width=192",
 	},
 	{
-		message: "docs: styling backend readme",
+		message:
+			"docs: styling backend readme blablablablab lablablablab lablablablab lablablabla se så flink jeg er:)",
 		authored: "2021-03-01",
 		profileName: "Shomlings",
 		profileImage:
