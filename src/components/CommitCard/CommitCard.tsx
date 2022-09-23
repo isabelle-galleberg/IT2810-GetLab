@@ -53,7 +53,7 @@ export default function CommitCard({
 			<div className="commitInfo">
 				<img className="profileImage" src={profileImage} alt="profileImage" />
 				<p className="profileName">{profileName}</p>
-				<p className="authored">{`commited on ${dateAuthored}`}</p>
+				<p className="dateAuthored">{`commited on ${dateAuthored}`}</p>
 			</div>
 		</div>
 	);
