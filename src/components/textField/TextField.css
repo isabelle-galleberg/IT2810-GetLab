@@ -1,0 +1,20 @@
+.wrapperInput {
+  margin: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.textField {
+  display: inline-block;
+  width: 280px;
+  border-radius: 5px;
+  border-width: 1px;
+  font-size: 16px;
+  padding: 10px;
+}
+@media (max-width: 340px) {
+  .textField {
+    width: 90%;
+  }
+}
