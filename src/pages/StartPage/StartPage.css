@@ -1,0 +1,17 @@
+.credentialsContainer {
+  margin-top: 40px;
+  display: flex;
+  text-align: center;
+  display: block;
+}
+
+.formWrapper {
+  margin-top: 55px;
+}
+
+.errorMessage {
+  color: rgba(226, 67, 41, 1);
+}
+
+
+
