@@ -1,8 +1,7 @@
 export interface CommitCardProps {
-	id: number;
-	message: string;
-	dateAuthored: string;
-	profileName: string;
+	title: string;
+	committedAt: string;
+	author: string;
 }
 export interface IssueCardProps {
   title: string;
