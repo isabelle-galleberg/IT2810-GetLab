@@ -1,59 +1,36 @@
+import { useEffect, useState } from "react";
 import CommitCard from "../../components/CommitCard/CommitCard";
+import commitService from "../../services/commitServices";
 import "./MainPage.css";
 
-const dummyData = [
-	{
-		id: "1",
-		message: "docs: styling backend readme hallo",
-		authored: "2021-03-01",
-		profileName: "Shomlings",
-		profileImage:
-			"https://gitlab.stud.idi.ntnu.no/uploads/-/system/user/avatar/9754/avatar.png?width=192",
-	},
-	{
-		id: "2",
-		message: "docs: styling backend readme hei",
-		authored: "2021-03-01",
-		profileName: "Shomlings",
-		profileImage:
-			"https://gitlab.stud.idi.ntnu.no/uploads/-/system/user/avatar/9754/avatar.png?width=192",
-	},
-	{
-		id: "3",
-		message: "docs: styling",
-		authored: "2021-03-01",
-		profileName: "Shomlings",
-		profileImage:
-			"https://gitlab.stud.idi.ntnu.no/uploads/-/system/user/avatar/9754/avatar.png?width=192",
-	},
-	{
-		id: "4",
-		message:
-			"docs: styling backend readme blablablablab lablablablab lablablablab lablablabla se så flink jeg er:) docs: styling backend readme blablablablab lablablablab lablablablab lablablabla se så flink jeg er:) docs: styling backend readme blablablablab lablablablab lablablablab lablablabla se så flink jeg er:)",
-		authored: "2021-03-01",
-		profileName: "Shomlings",
-		profileImage:
-			"https://gitlab.stud.idi.ntnu.no/uploads/-/system/user/avatar/9754/avatar.png?width=192",
-	},
-];
-
 export default function MainPage() {
-	return (
-		<div className="mainPage">
-			<div className="commitCards">
-				{dummyData.map((res: any) => {
-					return (
-						<CommitCard
-							key={res.id}
-							id={res.id}
-							message={res.message}
-							dateAuthored={res.authored}
-							profileName={res.profileName}
-							profileImage={res.profileImage}
-						/>
-					);
-				})}
-			</div>
-		</div>
-	);
+  const [commits, setCommits] = useState<any[]>([]);
+
+  // show all commits for this project
+  useEffect(() => {
+    commitService
+      .getAllCommits("17379", "glpat-GPrQJsa8_WicT1Fo5Ve1")
+      .then((commits: any[]) => {
+        setCommits(commits);
+      })
+      .catch((e) => console.log(e));
+  }, []);
+
+  return (
+    <div className="mainPage">
+      <div className="commitCards">
+        {commits.map((res: any) => {
+          return (
+            <CommitCard
+              key={res.id}
+              id={res.id}
+              message={res.title}
+              dateAuthored={res.committed_date.slice(0, 10)}
+              profileName={res.committer_name}
+            />
+          );
+        })}
+      </div>
+    </div>
+  );
 }
