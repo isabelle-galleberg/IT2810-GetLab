@@ -1,3 +1,16 @@
+export interface CommitCardProps {
+	id: number;
+	message: string;
+	dateAuthored: string;
+	profileName: string;
+}
+export interface IssueCardProps {
+  title: string;
+  labels: string[];
+  issueNumber: number;
+  createdAt: string;
+  author: string;
+}
 export interface LayoutProps {
   children: React.ReactNode;
 }
@@ -11,9 +24,3 @@ export interface TextFieldProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export interface CommitCardProps {
-	id: number;
-	message: string;
-	dateAuthored: string;
-	profileName: string;
-}

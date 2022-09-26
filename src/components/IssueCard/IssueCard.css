@@ -1,0 +1,72 @@
+.issueCard {
+    background-color: #f2f1f0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #3a73c5;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 5px;
+    height: 100%;
+    width: clamp(200px, calc(75vw), 800px);
+}
+
+.issueTitle {
+    font-weight: bold;
+}
+
+.label {
+    background-color: #3a73c5;
+    border-radius: 10px;
+    color: white;
+    padding: 3px;
+    white-space: nowrap;
+}
+
+.labels {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    overflow: auto;
+}
+
+/* hide scrollbar for Chrome, Safari and Opera */
+.labels::-webkit-scrollbar {
+    display: none;
+}
+
+/* hide scrollbar for IE, Edge and Firefox */
+.labels {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.issueInfo {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.createdAt {
+    color: grey;
+}
+
+@media screen and (min-width: 500px) {
+    .issueTitle, .issueNumber, .createdAt, .author {
+        font-size: 12px;
+    }
+    .label {
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .issueTitle, .issueNumber, .createdAt, .author {
+        font-size: 10px;
+    }
+    .label {
+        font-size: 8px;
+    }
+}
