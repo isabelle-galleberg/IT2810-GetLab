@@ -1,7 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import commitReducer from "./commitStore";
-export const store = configureStore({
-  reducer: {
-    commits: commitReducer,
-  },
+import { combineReducers } from "redux";
+import commitStore from "./commitStore";
+
+const reducer = combineReducers({
+  commitStore,
 });
+const store = configureStore({
+  reducer,
+});
+
+export default store;

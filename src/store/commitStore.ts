@@ -1,27 +1,27 @@
 import { createSlice } from "@reduxjs/toolkit";
 import Branch from "../types/api/branch";
-import Commit from "../types/api/Commit";
+import Commit from "../types/api/commit";
 import CommitFilter from "../types/commitFilter";
-
-export const commitState = createSlice({
-  name: "commitState",
+// Slice
+const slice = createSlice({
+  name: "commitStore",
   initialState: {
     filter: {} as CommitFilter,
     commits: [] as Commit[],
-    branches: [] as Branch[],
+    branches: [{ name: "asdas", web_url: "test" }] as Branch[],
   },
   reducers: {
     setCommits: (state, action) => {
-      state.filter = action.payload;
-    },
-    setFilter: (state, action) => {
       state.commits = action.payload;
     },
-    setBranch: (state, action) => {
+    setFilter: (state, action) => {
+      console.log(action.payload);
+      state.filter = action.payload;
+    },
+    setBranches: (state, action) => {
       state.branches = action.payload;
     },
   },
 });
-
-export const { setCommits, setFilter } = commitState.actions;
-export default commitState.reducer;
+export const { setCommits, setFilter, setBranches } = slice.actions;
+export default slice.reducer;
