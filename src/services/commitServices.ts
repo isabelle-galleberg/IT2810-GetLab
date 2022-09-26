@@ -1,4 +1,4 @@
-async function getAllCommits(projecID: string, privateToken: string): Promise<unknown> {
+async function getAllCommits(projecID: string, privateToken: string): Promise<any> {
     try {
         const response = await fetch('https://gitlab.stud.idi.ntnu.no/api/v4/projects/' + projecID +'/repository/commits?private_token=' + privateToken);
         const data = await response.json();
@@ -8,7 +8,7 @@ async function getAllCommits(projecID: string, privateToken: string): Promise<un
     }
 }
 
-async function getCommitsByBranch(projecID: string, branchName: string, privateToken: string): Promise<unknown> {
+async function getCommitsByBranch(projecID: string, branchName: string, privateToken: string): Promise<any> {
     try {
         const response = await fetch('https://gitlab.stud.idi.ntnu.no/api/v4/projects/' + projecID +'/repository/commits?ref_name=' + branchName + '?private_token=' + privateToken);
         const data = await response.json();
