@@ -1,6 +1,6 @@
 async function getAllIssues(projecID: string, privateToken: string): Promise<any> {
     try {
-        const response = await fetch('https://gitlab.stud.idi.ntnu.no/api/v4/projects/' + projecID +'/repository/issues?private_token=' + privateToken);
+        const response = await fetch('https://gitlab.stud.idi.ntnu.no/api/v4/projects/' + projecID +'/issues?private_token=' + privateToken);
         const data = await response.json();
         return data;
     } catch (error) {
@@ -12,7 +12,7 @@ async function getIssuesByLabels(projecID: string, labelList: string[], privateT
     try {
         const labelString = labelList.join(',');
 
-        const response = await fetch('https://gitlab.stud.idi.ntnu.no/api/v4/projects/' + projecID +'/repository/issues?labels=' + labelString + '?private_token=' + privateToken);
+        const response = await fetch('https://gitlab.stud.idi.ntnu.no/api/v4/projects/' + projecID +'/issues?labels=' + labelString + '?private_token=' + privateToken);
         const data = await response.json();
         return data;
     } catch (error) {
