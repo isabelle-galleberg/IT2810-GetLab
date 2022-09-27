@@ -23,10 +23,9 @@ export default function MainPage() {
           return (
             <CommitCard
               key={res.id}
-              id={res.id}
-              message={res.title}
-              dateAuthored={res.committed_date.slice(0, 10)}
-              profileName={res.committer_name}
+              title={res.title}
+              committedAt={res.committed_date.slice(0, 10)}
+              author={res.committer_name}
             />
           );
         })}
