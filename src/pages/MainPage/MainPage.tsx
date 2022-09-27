@@ -9,17 +9,12 @@ export default function MainPage() {
   const [commits, setCommits] = useState<any[]>([]);
   const [issues, setIssues] = useState<any[]>([]);
 
-  // show all commits for this project
   useEffect(() => {
     commitService
       .getAllCommits("17379", "glpat-GPrQJsa8_WicT1Fo5Ve1")
       .then((commits: any[]) => {
         setCommits(commits);
       });
-  }, []);
-
-  // show all issues for this project
-  useEffect(() => {
     issueService
       .getAllIssues("17379", "glpat-GPrQJsa8_WicT1Fo5Ve1")
       .then((issues: any[]) => {
@@ -48,10 +43,9 @@ export default function MainPage() {
           return (
             <CommitCard
               key={res.id}
-              id={res.id}
-              message={res.title}
-              dateAuthored={res.committed_date.slice(0, 10)}
-              profileName={res.committer_name}
+              title={res.title}
+              committedAt={res.committed_date.slice(0, 10)}
+              author={res.committer_name}
             />
           );
         })}
