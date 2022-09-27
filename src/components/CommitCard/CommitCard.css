@@ -5,44 +5,24 @@
 	border-radius: 10px;
 	display: flex;
 	flex-direction: column;
-	gap: 10px;
-	padding: 10px;
+	gap: 5px;
+	padding: 5px;
 	height: 100%;
-	width: clamp(220px, calc(75vw), 800px);
+	width: clamp(200px, calc(75vw), 800px);
 }
 
-.commitMessage,
-.commitInfo {
-	display: flex;
-	flex-direction: row;
-	gap: 10px;
-}
-
-.commitInfo {
-	align-items: center;
-}
-
-.message,
-.completeMessage {
+.title {
 	font-weight: bold;
 }
 
-.message,
-.completeMessage,
-.profileName,
-.dateAuthored {
-	margin-bottom: 0px;
-	margin-top: 0px;
+.commitInfo {
+	display: flex;
+	flex-direction: row;
+	gap: 5px;
 }
 
-.message {
-	overflow: hidden;
-	white-space: nowrap;
-}
-
-.completeMessage {
-	overflow: visible;
-	white-space: normal;
+.committedAt {
+	color: grey;
 }
 
 .profileImage {
@@ -51,34 +31,22 @@
 	width: 30px;
 }
 
-.dateAuthored {
-	color: grey;
-}
-
-.showMoreIcon {
-	cursor: pointer;
-	min-width: 16px;
-	min-height: 16px;
-}
-
 @media screen and (min-width: 500px) {
-	.message,
-	.completeMessage {
-		font-size: 16px;
+	.title {
+		font-size: 12px;
 	}
-	.dateAuthored,
-	.profileName {
-		font-size: 14px;
+	.committedAt,
+	.author {
+		font-size: 10px;
 	}
 }
 
 @media screen and (max-width: 500px) {
-	.message,
-	.completeMessage {
-		font-size: 14px;
+	.title {
+		font-size: 10px;
 	}
-	.dateAuthored,
-	.profileName {
-		font-size: 12px;
+	.committedAt,
+	.author {
+		font-size: 8px;
 	}
 }
