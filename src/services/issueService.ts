@@ -12,7 +12,7 @@ async function getIssuesByLabels(projectID: string, labelList: string[], private
     try {
         const labelString = labelList.join(',');
 
-        const response = await fetch('https://gitlab.stud.idi.ntnu.no/api/v4/projects/' + projectID +'/repository/issues?labels=' + labelString + '?private_token=' + privateToken);
+        const response = await fetch('https://gitlab.stud.idi.ntnu.no/api/v4/projects/' + projectID +'/repository/issues?labels=' + labelString + '&private_token=' + privateToken);
         const data = await response.json();
         return data;
     } catch (error) {
