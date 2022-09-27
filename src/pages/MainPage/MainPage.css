@@ -1,9 +1,10 @@
 .mainPage {
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
+	align-items: center;
 }
 
-.commitCards {
+.commitCards, .issueCards {
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
