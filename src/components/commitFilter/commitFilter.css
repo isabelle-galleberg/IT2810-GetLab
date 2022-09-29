@@ -1,0 +1,58 @@
+.filter {
+  display: flex;
+  /* flex-direction: row; */
+  align-items: center;
+  gap: 5px
+}
+
+.mantine-qew57g {
+  background-color: rgb(253, 107, 33);
+  border: 1px solid rgb(253, 107, 33);
+  color: white;
+  border-radius: 5px;
+  width: 225px;
+}
+
+.mantine-k5ijci {
+  background-color: rgb(253, 107, 33);
+  border: 1px solid rgb(253, 107, 33);
+  color: white;
+  border-radius: 5px;
+  width: 225px;
+}
+
+.mantine-nswq4e {
+  background-color: rgb(253, 107, 33);
+  border: 1px solid rgb(253, 107, 33);
+  color: white;
+  border-radius: 5px;
+  width: 225px;
+}
+
+.mantine-uquezq {
+  color: white;
+}
+
+.mantine-1klne3t {
+  background-color: rgb(253, 107, 33);
+  border: 1px solid rgb(253, 107, 33);
+  color: white;
+  border-radius: 5px;
+  width: 225px;
+}
+
+.mantine-1v3u1sh {
+  background-color: rgb(253, 107, 33);
+  border: 1px solid rgb(253, 107, 33);
+  color: white;
+  /* border-radius: 5px; */
+  width: 225px;
+}
+
+/* label {
+  cursor: pointer;
+  color: white;
+  display: block;
+  padding: 10px;
+  margin: 3px;
+} */
