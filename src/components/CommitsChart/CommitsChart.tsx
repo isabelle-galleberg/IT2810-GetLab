@@ -34,10 +34,6 @@ export default function Chart({ projectId, token }: CommitsChartProps) {
       legend: {
         position: 'top' as const,
       },
-      title: {
-        display: true,
-        text: 'Chart.js Bar Chart',
-      },
     },
   };
   

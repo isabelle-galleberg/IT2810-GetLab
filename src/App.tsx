@@ -21,9 +21,6 @@ function App() {
           <Routes>
             <Route path="/data" element={<MainPage />} />
           </Routes>
-          <Routes>
-            <Route path="/chart" element={<Chart projectId="17379" token="glpat-GPrQJsa8_WicT1Fo5Ve1" />} />
-          </Routes>
         </BrowserRouter>
       </main>
       <footer>
