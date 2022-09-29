@@ -1,11 +1,11 @@
 async function getAllCommits(
-  projectID: string,
+  projectId: string,
   privateToken: string
 ): Promise<any> {
   try {
     const response = await fetch(
       "https://gitlab.stud.idi.ntnu.no/api/v4/projects/" +
-        projectID +
+        projectId +
         "/repository/commits?private_token=" +
         privateToken
     );
@@ -17,14 +17,14 @@ async function getAllCommits(
 }
 
 async function getCommitsByBranch(
-  projectID: string,
+  projectId: string,
   branchName: string,
   privateToken: string
 ): Promise<any> {
   try {
     const response = await fetch(
       "https://gitlab.stud.idi.ntnu.no/api/v4/projects/" +
-        projectID +
+        projectId +
         "/repository/commits?ref_name=" +
         branchName +
         "&private_token=" +
@@ -37,9 +37,9 @@ async function getCommitsByBranch(
   }
 }
 
-async function getCommitsPerAuthor(projectID: string, privateToken: string): Promise<any> {
+async function getCommitsPerAuthor(projectId: string, privateToken: string): Promise<any> {
     try {
-        const response = await fetch('https://gitlab.stud.idi.ntnu.no/api/v4/projects/' + projectID +'/repository/commits?ref_name=main&per_page=10000&private_token=' + privateToken);
+        const response = await fetch('https://gitlab.stud.idi.ntnu.no/api/v4/projects/' + projectId +'/repository/commits?ref_name=main&per_page=10000&private_token=' + privateToken);
         const data = await response.json();
         let commitsPerAuthor = new Map<string, number>();
         for (const commit of data){

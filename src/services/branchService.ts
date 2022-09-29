@@ -1,11 +1,11 @@
 async function getBranches(
-  projectID: string,
+  projectId: string,
   privateToken: string
 ): Promise<any> {
   try {
     const response = await fetch(
       "https://gitlab.stud.idi.ntnu.no/api/v4/projects/" +
-        projectID +
+        projectId +
         "/repository/branches?private_token=" +
         privateToken
     );
