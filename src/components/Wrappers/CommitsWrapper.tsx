@@ -4,7 +4,7 @@ import CommitCard from "../CommitCard/CommitCard";
 import CommitFilter from "../commitFilter/commitFilter";
 import "./Wrapper.css";
 
-export default function CommitsWrapper(props: any) {
+export default function CommitsWrapper({ pageinator, setPageinator }: any) {
   const [commits, setCommits] = useState<any[]>([]);
   const [filter, setFilter] = useState<any>({
     branch: "",
@@ -17,9 +17,9 @@ export default function CommitsWrapper(props: any) {
       .getAllCommits("17379", "glpat-GPrQJsa8_WicT1Fo5Ve1")
       .then((commits: any[]) => {
         setCommits(commits);
-        props.setPageinator(null, commits.length);
+        setPageinator(null, commits.length);
       });
-  }, [props, props.pageinator.page, props.filter]);
+  }, [setPageinator]);
 
   return (
     <div>
