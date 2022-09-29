@@ -5,13 +5,13 @@ import TextField from "../../components/TextField/TextField";
 
 
 export default function StartPage() {
-  const [projectID, setProjectID] = useState<string | null>(null);
+  const [projectId, setProjectId] = useState<string | null>(null);
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState(false);
 
   // when changing text field, update name value and hide error message
   const changeName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setProjectID(e.target.value);
+    setProjectId(e.target.value);
     setErrorMessage(false);
   }
 
@@ -27,11 +27,11 @@ export default function StartPage() {
     // checks whether the text fields are filled in
     // if not: show error message
     // else:
-    if (!Boolean(projectID) || !Boolean(accessToken)) {
+    if (!Boolean(projectId) || !Boolean(accessToken)) {
       setErrorMessage(true);
     }
     else {
-      console.log("Project ID: " + projectID);
+      console.log("Project ID: " + projectId);
       console.log("Access token: " + accessToken);
     }
   }
