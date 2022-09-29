@@ -13,7 +13,12 @@ import {
 import { Bar } from 'react-chartjs-2';
 import commitService from '../../services/commitServices';
 
-function createChart(projectId: string, token: string) {
+export interface CommitsChartProps {
+  projectId: string;
+  token: string;
+}
+
+export default function Chart({ projectId, token }: CommitsChartProps) {
   ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -35,17 +40,20 @@ function createChart(projectId: string, token: string) {
       },
     },
   };
-
-  const [commits, setCommits] = useState<any[]>([]);
+  
+  const [contributors, setContributors] = useState<string[]>([]);
+  const [commits, setCommits] = useState<number[]>([]);
 
   useEffect(() => {
     commitService
-      .getAllCommits("17379", "glpat-GPrQJsa8_WicT1Fo5Ve1")
-      .then((commits: any[]) => {
+      .getCommitsPerAuthor(projectId, token)
+      .then((commitsPerAuthor: Map<string, number>) => {
+        const contributors = Array.from(commitsPerAuthor.keys());
+        const commits = Array.from(commitsPerAuthor.values());
+        setContributors(contributors);
         setCommits(commits);
       });
   }, []);
-  
   
   const data = {
     labels: contributors,
@@ -61,6 +69,3 @@ function createChart(projectId: string, token: string) {
   return <Bar data={data} options={options} />;
 }
 
-export function Chart() {
-  return createChart("17379", "glpat-GPrQJsa8_WicT1Fo5Ve1");
-}

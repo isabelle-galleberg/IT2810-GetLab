@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MainPage from "./pages/MainPage/MainPage";
 import StartPage from "./pages/StartPage/StartPage";
-import { Chart } from "./components/CommitsChart/CommitsChart";
+import Chart from "./components/CommitsChart/CommitsChart";
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
             <Route path="/data" element={<MainPage />} />
           </Routes>
           <Routes>
-            <Route path="/chart" element={<Chart />} />
+            <Route path="/chart" element={<Chart projectId="17379" token="glpat-GPrQJsa8_WicT1Fo5Ve1" />} />
           </Routes>
         </BrowserRouter>
       </main>
