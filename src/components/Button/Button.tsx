@@ -1,10 +1,19 @@
+import React from "react";
 import { ButtonProps } from "../../types/propTypes";
-import "./Button.css"
+import "./Button.css";
 
-export default function Button({ onClick, children, disabled }: ButtonProps) {
-  return (
-    <button className="button" onClick={onClick} disabled={disabled} >
-      {children}
-    </button >
-  );
+class Button extends React.Component<ButtonProps> {
+	render() {
+		return (
+			<button
+				className="button"
+				onClick={this.props.onClick}
+				disabled={this.props.disabled}
+			>
+				{this.props.children}
+			</button>
+		);
+	}
 }
+
+export default Button;
