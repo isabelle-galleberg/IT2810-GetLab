@@ -57,14 +57,16 @@ export default function MainPage() {
         />
       )}
       {value === "commitsChart" && (
-        <Chart projectId={"17379"} token={"glpat-GPrQJsa8_WicT1Fo5Ve1"}></Chart>
+        <Chart projectId={"17379"} token={"glpat-GPrQJsa8_WicT1Fo5Ve1"} />
       )}
       <br />
-      <Pagination
-        total={pageinator.total}
-        page={pageinator.page}
-        onChange={setPage}
-      />
+      {(value === "commits" || value === "issues") && (
+        <Pagination
+          total={pageinator.total}
+          page={pageinator.page}
+          onChange={setPage}
+        />
+      )}
     </div>
   );
 }
