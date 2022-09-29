@@ -4,6 +4,7 @@ import CommitsWrapper from "../../components/Wrappers/CommitsWrapper";
 import IssuesWrapper from "../../components/Wrappers/IssuesWrapper";
 import "./MainPage.css";
 import { Pagination } from "@mantine/core";
+import Chart from "../../components/CommitsChart/CommitsChart";
 
 export default function MainPage() {
   const [value, setValue] = useState<string | null>(null);
@@ -40,6 +41,7 @@ export default function MainPage() {
         data={[
           { value: "commits", label: "Commit log" },
           { value: "issues", label: "Issues" },
+          { value: "commitsChart", label: "Commits chart" },
         ]}
       />
       {value === "commits" && (
@@ -53,6 +55,9 @@ export default function MainPage() {
           setPageinator={setPageinatorWrap}
           pageinator={pageinator}
         />
+      )}
+      {value === "commitsChart" && (
+        <Chart projectId={"17379"} token={"glpat-GPrQJsa8_WicT1Fo5Ve1"}></Chart>
       )}
       <br />
       <Pagination
