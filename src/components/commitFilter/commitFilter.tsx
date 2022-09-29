@@ -19,7 +19,6 @@ function CommitFilter() {
     branchService
       .getBranches("17379", "glpat-GPrQJsa8_WicT1Fo5Ve1")
       .then((brancheRes: Branch[]) => {
-        console.log(brancheRes);
         dispatch(setBranches(brancheRes));
         // get default branch
         updateBranch(brancheRes.find((m: Branch) => m.default)?.name ?? "");

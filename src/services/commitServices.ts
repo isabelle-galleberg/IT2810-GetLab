@@ -46,7 +46,6 @@ async function getCommitsPerAuthor(projectId: string, privateToken: string): Pro
         const data = await response.json();
         let commitsPerAuthor = new Map<string, number>();
         for (const commit of data){
-            console.log(commit.title);
             if (commitsPerAuthor.has(commit.author_name)){
                 commitsPerAuthor.set(commit.author_name, commitsPerAuthor.get(commit.author_name)! + 1);
             } else {
