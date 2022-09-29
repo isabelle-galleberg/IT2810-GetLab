@@ -1,0 +1,11 @@
+.commitCards,
+.issueCards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+} 
+
+.commitFilter {
+  padding-bottom: 25px;
+}

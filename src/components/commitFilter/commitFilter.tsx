@@ -1,3 +1,4 @@
+import "./commitFilter.css";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Select } from "@mantine/core";
@@ -34,18 +35,20 @@ function CommitFilter() {
     value: branch.name,
   }));
 
+
   return (
-    <div>
+    <div className="filter">
       <Select
-        label="Select the branch you wish to view"
+        label="Filter by branch"
         data={branchSelectItems}
         searchable
         onChange={updateBranch}
         value={filter.branch}
       />
       <DateRangePicker
-        label="Please select the date span of the commits you want to see"
+        label="Filter by date"
         placeholder="Seeing all commits"
+        inputFormat="YYYY-MM-DD"
       />
     </div>
   );
