@@ -12,6 +12,7 @@
 }
 
 .title {
+	font-size: 12px;
 	font-weight: bold;
 }
 
@@ -19,6 +20,11 @@
 	display: flex;
 	flex-direction: row;
 	gap: 5px;
+}
+
+.committedAt,
+.author {
+	font-size: 10px;
 }
 
 .committedAt {
@@ -29,16 +35,6 @@
 	border-radius: 50px;
 	height: 30px;
 	width: 30px;
-}
-
-@media screen and (min-width: 500px) {
-	.title {
-		font-size: 12px;
-	}
-	.committedAt,
-	.author {
-		font-size: 10px;
-	}
 }
 
 @media screen and (max-width: 500px) {
