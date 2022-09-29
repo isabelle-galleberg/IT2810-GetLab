@@ -34,8 +34,8 @@ export default function CommitsWrapper({ pageinator, setPageinator }: any) {
       <div className="commitCards">
         {commits
           .splice(
-            (props.pageinator.page - 1) * props.pageinator.perPage,
-            props.pageinator.page * props.pageinator.perPage
+            (pageinator.page - 1) * pageinator.perPage,
+            pageinator.page * pageinator.perPage
           )
           .map((res: any) => {
             return (
