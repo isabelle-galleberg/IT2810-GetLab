@@ -25,16 +25,16 @@ In the project directory, you can run:
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-# Project requirements
+##  ☑Project requirements
 
-## GitLab data
+### GitLab data
 The application presents GitLab data for issues and commits for the chosen project.
 User parametizing for commits consists of filtering based on the author of an issue and selected labels. 
 For commits, the user can filter commits by branch and a chosen time frame. 
 
 There is also implemented a chart that displays the number of commits that each user has commited in the project. The chart is created with the vertical bar chart from [react-chartjs-2](https://react-chartjs-2.js.org/examples/vertical-bar-chart/). 
 
-## UI and responsiveness
+### UI and responsiveness
 For screens with a width smaller than 500px, the website will decrease the font-size and size of GetLab logo. Used media-queries to achieve this. Vw and vh? The application does not support devices with a screen size smaller than 200px, as this is very unusual. If the labels of an issue cards are wider than the card itself, these can be scrolled horizontally. 
 
 We have used the React component library [Mantine](https://mantine.dev) to create some of the components for the applicatoin, such as the pagination, datepicker and dropdown menus. 
