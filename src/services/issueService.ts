@@ -1,6 +1,7 @@
-async function getIssues(projectID: string, privateToken: string, numberOfIssues: string, page: number): Promise<any> {
+// Returns the response of an api call to get the issues of a project and how many pages the response has
+async function getIssues(projectId: string, privateToken: string, numberOfIssues: string, page: number): Promise<any> {
     try {
-        const response = await fetch('https://gitlab.stud.idi.ntnu.no/api/v4/projects/' + projectID + '/issues?per_page=' + numberOfIssues + '&private_token=' + privateToken + "&page=" + page);
+        const response = await fetch('https://gitlab.stud.idi.ntnu.no/api/v4/projects/' + projectId + '/issues?per_page=' + numberOfIssues + '&private_token=' + privateToken + "&page=" + page);
         const data = await response.json();
         const totalPages = response.headers.get("X-Total-Pages");
         return {data, totalPages};
@@ -9,10 +10,11 @@ async function getIssues(projectID: string, privateToken: string, numberOfIssues
     }
 }
 
-async function getIssuesByLabels(projectID: string, labelList: string[], privateToken: string): Promise<any> {
+// Returns the response of an api call to get the issues with a set of given labels
+async function getIssuesByLabels(projectId: string, labelList: string[], privateToken: string): Promise<any> {
     try {
         const labelString = labelList.join(',');
-        const response = await fetch('https://gitlab.stud.idi.ntnu.no/api/v4/projects/' + projectID +'/issues?labels=' + labelString + '&private_token=' + privateToken);
+        const response = await fetch('https://gitlab.stud.idi.ntnu.no/api/v4/projects/' + projectId +'/issues?labels=' + labelString + '&private_token=' + privateToken);
         const data = await response.json();
         return data;
     } catch (error) {

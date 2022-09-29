@@ -15,7 +15,6 @@ export default function IssuesWrapper(props: any) {
         props.pageinator.page
       )
       .then((issues: any) => {
-        console.log(issues);
         props.setPageinator(issues.totalPages, null);
         setIssues(issues.data);
       });

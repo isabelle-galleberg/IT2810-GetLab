@@ -15,7 +15,6 @@ const slice = createSlice({
       state.commits = action.payload;
     },
     setFilter: (state, action) => {
-      console.log(action.payload);
       state.filter = action.payload;
     },
     setBranches: (state, action) => {
