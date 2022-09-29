@@ -1,3 +1,4 @@
+// Returns the response of an api call to get the branches of a project
 async function getBranches(
   projectId: string,
   privateToken: string

@@ -1,3 +1,4 @@
+// Returns the response of an api call to get the commits of a project
 async function getAllCommits(
   projectId: string,
   privateToken: string
@@ -16,6 +17,7 @@ async function getAllCommits(
   }
 }
 
+// Returns the response of an api call to get the commits of a given branch
 async function getCommitsByBranch(
   projectId: string,
   branchName: string,
@@ -37,6 +39,7 @@ async function getCommitsByBranch(
   }
 }
 
+// Returns a map of how many commits each user has made
 async function getCommitsPerAuthor(projectId: string, privateToken: string): Promise<any> {
     try {
         const response = await fetch('https://gitlab.stud.idi.ntnu.no/api/v4/projects/' + projectId +'/repository/commits?ref_name=main&per_page=10000&private_token=' + privateToken);
