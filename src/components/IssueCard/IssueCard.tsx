@@ -1,18 +1,12 @@
 import "./IssueCard.css";
 import { IssueCardProps } from "../../types/propTypes";
 
-export default function IssueCard({
-  title,
-  labels,
-  issueNumber,
-  createdAt,
-  author,
-}: IssueCardProps) {
+export default function IssueCard(props: IssueCardProps) {
   return (
     <div className="issueCard">
-      <div className="issueTitle">{title}</div>
+      <div className="issueTitle">{props.title}</div>
       <div className="labels">
-        {labels.map((label: string) => {
+        {props.labels.map((label: string) => {
           return (
             <div className="label" key={label}>
               {label}
@@ -21,9 +15,9 @@ export default function IssueCard({
         })}
       </div>
       <div className="issueInfo">
-        <div className="issueNumber">{`#${issueNumber}`}</div>
-        <div className="createdAt">{`created ${createdAt} by`}</div>
-        <div className="author">{author}</div>
+        <div className="issueNumber">{`#${props.issueNumber}`}</div>
+        <div className="createdAt">{`created ${props.createdAt} by`}</div>
+        <div className="author">{props.author}</div>
       </div>
     </div>
   );

@@ -6,7 +6,12 @@ import "./Wrapper.css";
 
 export default function CommitsWrapper(props: any) {
   const [commits, setCommits] = useState<any[]>([]);
-
+  const [filter, setFilter] = useState<any>({
+    branch: "",
+    dateFrom: "",
+    dateTo: "",
+  });
+  const [branches, setBranches] = useState<any[]>([]);
   useEffect(() => {
     commitService
       .getAllCommits("17379", "glpat-GPrQJsa8_WicT1Fo5Ve1")
@@ -14,12 +19,17 @@ export default function CommitsWrapper(props: any) {
         setCommits(commits);
         props.setPageinator(null, commits.length);
       });
-  }, [props.pageinator.page]);
+  }, [props, props.pageinator.page, props.filter]);
 
   return (
     <div>
       <div className="commitFilter">
-        <CommitFilter></CommitFilter>
+        <CommitFilter
+          branches={branches}
+          setBranches={setBranches}
+          filter={filter}
+          setFilter={setFilter}
+        ></CommitFilter>
       </div>
       <div className="commitCards">
         {commits
