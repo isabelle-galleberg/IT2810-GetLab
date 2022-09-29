@@ -3,16 +3,23 @@ import issueService from "../../services/issueService";
 import IssueCard from "../IssueCard/IssueCard";
 import "./Wrapper.css";
 
-export default function IssuesWrapper() {
+export default function IssuesWrapper(props: any) {
   const [issues, setIssues] = useState<any[]>([]);
 
   useEffect(() => {
     issueService
-      .getAllIssues("17379", "glpat-GPrQJsa8_WicT1Fo5Ve1")
-      .then((issues: any[]) => {
-        setIssues(issues);
+      .getIssues(
+        "17379",
+        "glpat-GPrQJsa8_WicT1Fo5Ve1",
+        props.pageinator.perPage,
+        props.pageinator.page
+      )
+      .then((issues: any) => {
+        console.log(issues);
+        props.setPageinator(issues.totalPages, null);
+        setIssues(issues.data);
       });
-  }, []);
+  }, [props.pageinator.page]);
 
   return (
     <div>
