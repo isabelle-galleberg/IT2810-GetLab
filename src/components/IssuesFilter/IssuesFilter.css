@@ -1,0 +1,26 @@
+.filter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+/* labels */
+.mantine-1rbe782 {
+    min-width: 200px;
+    max-width: 200px;
+}
+.mantine-fqghar {
+    background-color: rgb(255, 238, 229);
+    padding-left: 5px;
+}
+/* creator */
+.mantine-qew57g {
+    min-width: 200px;
+}
+  
+@media (max-width: 450px) {
+    .filter {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
