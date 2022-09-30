@@ -43,7 +43,7 @@ async function getCommitsByBranch(
           projectId +
           "/repository/commits?ref_name=" +
           branchName +
-          "&per_page=3&private_token=" +
+          "&per_page=100&private_token=" +
           privateToken +
           "&page=" +
           page
