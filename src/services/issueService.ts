@@ -1,4 +1,3 @@
-
 // Returns the response of an api call to get the issues of a project and how many pages the response has
 async function getIssues(
   projectId: string,

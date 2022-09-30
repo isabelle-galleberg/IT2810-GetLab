@@ -21,19 +21,19 @@ export default function IssuesWrapper(props: any) {
   }, [props.pageinator.page]);
 
   return (
-      <div className="issueCards">
-        {issues.map((res: any) => {
-          return (
-            <IssueCard
-              key={res.id}
-              title={res.title}
-              labels={res.labels}
-              author={res.author.username}
-              createdAt={res.updated_at.slice(0, 10)}
-              issueNumber={res.iid}
-            />
-          );
-        })}
-      </div>
+    <div className="issueCards">
+      {issues.map((res: any) => {
+        return (
+          <IssueCard
+            key={res.id}
+            title={res.title}
+            labels={res.labels}
+            author={res.author.username}
+            createdAt={res.updated_at.slice(0, 10)}
+            issueNumber={res.iid}
+          />
+        );
+      })}
+    </div>
   );
 }
