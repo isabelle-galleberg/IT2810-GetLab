@@ -38,7 +38,7 @@ function CommitFilter({
         data={branchSelectItems}
         searchable
         onChange={updateBranch}
-        value={branch}
+        value={filter.branch}
       />
       <DateRangePicker
         label="Filter by date"
