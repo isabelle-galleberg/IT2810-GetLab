@@ -36,7 +36,6 @@ export default function MainPage() {
       <Select
         className="select"
         placeholder="Pick one"
-        radius="md"
         onChange={setDisplayType}
         data={[
           { value: "commits", label: "Commit log" },
