@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./StartPage.css";
 import Button from "../../components/Button/Button";
 import TextField from "../../components/TextField/TextField";
+import { GitlabContext } from "../../context/GitlabContext";
 
 export default function StartPage() {
   const [projectId, setProjectId] = useState<string | null>(null);
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState(false);
-
+  const { gitlabCredentials, setGitlabCredentials } = useContext(GitlabContext);
   // when changing text field, update name value and hide error message
   const changeName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setProjectId(e.target.value);
