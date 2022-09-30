@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 10px;
 }
 
 .select {
@@ -15,22 +16,10 @@
   align-items: center;
 }
 
-.mantine-pggm6s {
-  color: white;
+/* select */
+.mantine-1ajyf09 {
   background-color: #3a73c5;
-  border: 1px solid #3a73c5;
-  transition: white 100ms ease;
-  -webkit-tap-highlight-color: white;
-  border-radius: 5px;
-  initial-value: white;
-}
-
-/* .mantine-pggm6s:not(:disabled)::selection {
-  background-color: white;
-  color: white
-}
-
-.input{
   color: white;
-  initial-value: white;
-} */
+  border: 1px solid #3a73c5; 
+  min-width: 200px;
+}

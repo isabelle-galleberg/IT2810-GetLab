@@ -6,6 +6,6 @@
   gap: 10px;
 } 
 
-.commitFilter {
+.commitFilter, .issuesFilter {
   padding-bottom: 25px;
 }

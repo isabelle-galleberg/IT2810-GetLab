@@ -10,7 +10,7 @@ export default function IssuesWrapper({ pageinator }: any) {
   const [filterCreator, setFilterCreator] = useState<any>({creator: null});
   const [filterLabels, setFilterLabels] = useState<any>({labels: []});
 
-  useEffect(()=>{
+  useEffect(() => {
     setIssues([]);
     issueService
     .getIssues(
@@ -24,7 +24,7 @@ export default function IssuesWrapper({ pageinator }: any) {
           setIssues(issues => [...issues, data])
         }
       })
-    })
+    });
   }, [filterCreator, filterLabels]);
 
   useEffect(() => {
