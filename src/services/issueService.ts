@@ -45,9 +45,27 @@ async function getIssuesByLabels(
   }
 }
 
+// Returns a list of all labelnames in a project
+async function getLabels(projectId: string, privateToken: string): Promise<any> {
+    try {
+        const response = await fetch('https://gitlab.stud.idi.ntnu.no/api/v4/projects/' + projectId +'/labels?private_token=' + privateToken);
+        const data = await response.json();
+        let labelList: string[] = [];
+        for (const label of data){
+            if (!labelList.includes(label.name)){
+                labelList.push(label.name);
+            }
+        }
+        return labelList;
+    } catch (error) {
+        console.log(error);
+    }
+}   
+
 const issueService = {
-  getIssues,
-  getIssuesByLabels,
-};
+    getIssues,
+    getIssuesByLabels,
+    getLabels
+}
 
 export default issueService;
