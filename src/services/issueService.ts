@@ -1,4 +1,4 @@
-// Returns the response of an api call to get the issues of a project and how many pages the response has
+// Returns the response of an api call to get one page of issues.
 async function getIssues(
   projectId: string,
   privateToken: string,
@@ -24,42 +24,62 @@ async function getIssues(
   }
 }
 
-// Returns the response of an api call to get the issues with a set of given labels
+// Returns the response of an api call to get the issues with a set of given labels. Iterates through all pages.
 async function getIssuesByLabels(
   projectId: string,
   labelList: string[],
   privateToken: string
 ): Promise<any> {
   try {
-    const labelString = labelList.join(",");
-    const response = await fetch(
-      "https://gitlab.stud.idi.ntnu.no/api/v4/projects/" +
-        projectId +
-        "/issues?labels=" +
-        labelString +
-        "&private_token=" +
-        privateToken
-    );
-    const data = await response.json();
+    let data: any[] = [];
+    let response_size = 100;
+    let page = 1;
+    while (response_size == 100) {
+      const labelString = labelList.join(",");
+      const response = await fetch(
+        "https://gitlab.stud.idi.ntnu.no/api/v4/projects/" +
+          projectId +
+          "/issues?labels=" +
+          labelString +
+          "&per_page=100&private_token=" +
+          privateToken +
+          "&page=" +
+          page
+      );
+      const response_data = await response.json();
+      response_size = response_data.length;
+      data = data.concat(response_data);
+      page++;
+    }
     return data;
   } catch (error) {
     console.log(error);
   }
 }
 
-// Returns a list of all labelnames in a project
+// Returns a list of all labelnames in a project. Iterates through all pages.
 async function getLabels(
   projectId: string,
   privateToken: string
 ): Promise<any> {
   try {
-    const response = await fetch(
-      "https://gitlab.stud.idi.ntnu.no/api/v4/projects/" +
-        projectId +
-        "/labels?private_token=" +
-        privateToken
-    );
-    const data = await response.json();
+    let data: any[] = [];
+    let response_size = 100;
+    let page = 1;
+    while (response_size == 100) {
+      const response = await fetch(
+        "https://gitlab.stud.idi.ntnu.no/api/v4/projects/" +
+          projectId +
+          "/labels?per_page=100&private_token=" +
+          privateToken +
+          "&page=" +
+          page
+      );
+      const response_data = await response.json();
+      response_size = response_data.length;
+      data = data.concat(response_data);
+      page++;
+    }
     let labelList: string[] = [];
     for (const label of data) {
       if (!labelList.includes(label.name)) {
