@@ -1,9 +1,9 @@
-# GetLab
-GetLab is a web application that presents information about a GitLab repository. The selected data is retrieved from the [GitLab REST API](https://docs.GitLab.com/ee/api/) based on the GitLab project ID and access token. 
+# GetLab 
+GetLab is a web application that presents information about a GitLab repository. The presented data is retrieved from the [GitLab REST API](https://docs.GitLab.com/ee/api/), based on the GitLab project ID and access token. The application only supports repositories using the https://gitlab.stud.idi.ntnu.no domain. 
 
 ### Get GitLab project ID
 - Go to the "Project Overview" page
-- The project ID can be copied from under the title of the project.
+- The project ID can be copied from under the title of the project
 
 ### Get GitLab access token
 - Go into your project in GitLab
@@ -29,28 +29,27 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 ## ☑️Requirements
 
 ### Presenting GitLab data
-The application presents GitLab data for issues and commits for the chosen project.
-User parametizing for commits consists of filtering based on the author of an issue and selected labels. 
-For commits, the user can filter commits by branch and a chosen time frame. 
+GetLab presents GitLab data for issues and commits for the chosen project. For commits, the user parametizing consists of filtering commits based on the author and a chosen time frame. There is also implemented a chart that displays how many commits each member has contributed to the project. The chart is created with the vertical bar chart from [react-chartjs-2](https://react-chartjs-2.js.org/examples/vertical-bar-chart/). The chart displays bars based on email, such that group members that have syncronized GitLab to GitHub may appear with two separate bars. 
 
-There is also implemented a chart that displays the number of commits that each user has commited in the project. The chart is created with the vertical bar chart from [react-chartjs-2](https://react-chartjs-2.js.org/examples/vertical-bar-chart/). 
+For issues, the user can filter based on selected labels and author. The data is paginated, such that the user only can view 5 issues or 10 commits at a time. 
+
 
 ### React with TypeScript
-The application is implemented in React with TypeScript. 
-All components are React functional components, except for Button.tsx which is a class component. 
-I think Ole has used the Context API. 
-We have used the formatting tool Prettier to ensure a common coding style in the project. 
+The application is implemented in React with TypeScript. All components are React functional components, except for Button.tsx which is a class component. We have used the formatting tool Prettier to ensure a common coding style in the project. 
+
+@Ole has used the context API for ..
+
+We have used the React component library [Mantine](https://mantine.dev) to create some of the components for the applicatoin, such as the pagination, datepicker and dropdown menus. 
 
 ### Fetching GitLab data
-Data from the GitLab API is fetched with AJAX (Asynchronous JavaScript)
+Data from the GitLab API is fetched with AJAX (Asynchronous JavaScript). 
 
 ### HTML Web Storage
 Localstorage and sessionstorage.
 
 ### UI and responsiveness
-For screens with a width smaller than 500px, the website will decrease the font-size and size of GetLab logo. Used media-queries to achieve this. Vw and vh? The application does not support devices with a screen size smaller than 200px, as this is very unusual. If the labels of an issue cards are wider than the card itself, these can be scrolled horizontally. 
+The application does not support devices with a smaller screen width than 280px, as this is very unusual. For screens smaller than 500px in width, the website will decrease the font-size and size of GetLab logo. This is implemented using media-queries. We have used vw (view width) for the commit/issue cards and chart to make the component scale according to screen size. If the labels of an issue card are wider than the card itself, the labels can be scrolled horizontally. 
 
-We have used the React component library [Mantine](https://mantine.dev) to create some of the components for the applicatoin, such as the pagination, datepicker and dropdown menus. 
 
 
 ## 🧪Testing
@@ -62,7 +61,7 @@ We have used the React component library [Mantine](https://mantine.dev) to creat
 
 ## 🚀Git guidelines 
 
-All tasks should be documented in a issue. When picking a issue it should have its own branch. We have disabled pushing to main branch, the only way to add code is to use merge requests. When merging to main branch, the commits should be squashed.
+All development tasks are documented in a issue. After assigning yourself to an issue, the issue should be solved in its own branch. We have disabled pushing to main branch, such that the only way to add code is though merge requests. When merging with main branch, the commits should be squashed.
 
 ### Semantic Commit Messages
 
