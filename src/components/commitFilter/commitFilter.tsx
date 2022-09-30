@@ -34,7 +34,6 @@ function CommitFilter() {
     value: branch.name,
   }));
 
-
   return (
     <div className="filter">
       <Select
