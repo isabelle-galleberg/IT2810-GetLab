@@ -40,7 +40,7 @@ async function getIssuesByLabels(
         "https://gitlab.stud.idi.ntnu.no/api/v4/projects/" +
           projectId +
           "/issues?labels=" +
-          labelString +
+          encodeURIComponent(labelString) +
           "&per_page=100&private_token=" +
           privateToken +
           "&page=" +
