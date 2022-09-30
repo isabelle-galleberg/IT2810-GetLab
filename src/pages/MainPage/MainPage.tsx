@@ -1,5 +1,5 @@
 import { Select } from "@mantine/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CommitsWrapper from "../../components/Wrappers/CommitsWrapper";
 import IssuesWrapper from "../../components/Wrappers/IssuesWrapper";
 import "./MainPage.css";
@@ -15,8 +15,21 @@ export default function MainPage() {
   });
 
   function setDisplayType(value: string) {
-    setValue(value);
-    setPage(1);
+    if (typeof Storage !== "undefined") {
+      if (value === "") {
+        if (sessionStorage.value !== null) {
+          setValue(sessionStorage.value);
+          setPage(1);
+        }
+      } else {
+        sessionStorage.value = value;
+        setValue(value);
+        setPage(1);
+      }
+    } else if (value !== "") {
+      setValue(value);
+      setPage(1);
+    }
   }
 
   function setPage(page: number) {
@@ -30,6 +43,10 @@ export default function MainPage() {
       data = { ...pageinator, total: maxItems / pageinator.perPage };
     setPageinator(data);
   }
+
+  useEffect(() => {
+    setDisplayType("");
+  }, []);
 
   return (
     <div className="mainPage">
