@@ -14,8 +14,9 @@ async function getIssues(projectId: string, privateToken: string, numberOfIssues
 async function getIssuesByLabels(projectId: string, labelList: string[], privateToken: string): Promise<any> {
     try {
         const labelString = labelList.join(',');
-        const response = await fetch('https://gitlab.stud.idi.ntnu.no/api/v4/projects/' + projectId +'/issues?labels=' + labelString + '&private_token=' + privateToken);
+        const response = await fetch('https://gitlab.stud.idi.ntnu.no/api/v4/projects/' + projectId +'/issues?labels=' + encodeURIComponent(labelString) + '&private_token=' + privateToken);
         const data = await response.json();
+        console.log(data)
         return data;
     } catch (error) {
         console.log(error);
