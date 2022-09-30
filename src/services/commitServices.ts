@@ -54,13 +54,13 @@ async function getCommitsPerAuthor(
     const data = await response.json();
     let commitsPerAuthor = new Map<string, number>();
     for (const commit of data) {
-      if (commitsPerAuthor.has(commit.committer_email)) {
+      if (commitsPerAuthor.has(commit.author_email)) {
         commitsPerAuthor.set(
-          commit.committer_email,
-          commitsPerAuthor.get(commit.committer_email)! + 1
+          commit.author_email,
+          commitsPerAuthor.get(commit.author_email)! + 1
         );
       } else {
-        commitsPerAuthor.set(commit.committer_email, 1);
+        commitsPerAuthor.set(commit.author_email, 1);
       }
     }
     return commitsPerAuthor;
