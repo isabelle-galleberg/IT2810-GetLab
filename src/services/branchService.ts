@@ -4,7 +4,6 @@ async function getBranches(
   privateToken: string
 ): Promise<any> {
   try {
-    // const data = await response.json();
     let data: any[] = [];
     let response_size = 100;
     let page = 1;
