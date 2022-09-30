@@ -1,6 +1,7 @@
 //Inspired by https://react-chartjs-2.js.org/examples/vertical-bar-chart/
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import "./CommitsChart.css";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -28,7 +29,7 @@ export default function Chart({ projectId, token }: CommitsChartProps) {
   const [commits, setCommits] = useState<number[]>([]);
 
   const data = {
-    labels: contributors,
+    labels: contributors.map((c) => c.split("@")[0]),
     datasets: [
       {
         label: "Commits",
@@ -56,5 +57,5 @@ export default function Chart({ projectId, token }: CommitsChartProps) {
       });
   }, []);
 
-  return <Bar data={data} options={options} />;
+  return <Bar data={data} options={options} className="commitsChart" />;
 }
