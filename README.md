@@ -22,7 +22,7 @@ In the project directory, you can run:
 - `npm start` to install dependencies and run the project in development mode
 - `npm test` to run the test runner interactively
 - `npm run build` to build the app for production to the `build` folder
-- `npx prettier --write ` to run prettier formatting checks
+- `npx prettier --write .` to run prettier formatting checks
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
