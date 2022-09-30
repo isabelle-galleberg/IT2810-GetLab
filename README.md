@@ -11,7 +11,7 @@ GetLab is a web application that presents information about a GitLab repository.
 - Choose a name, expiry-date and scopes
 - Click "Create project access token"
 
-## 👩‍💻Project setup 
+## 💻Project setup 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -22,6 +22,7 @@ In the project directory, you can run:
 - `npm start` to install dependencies and run the project in development mode
 - `npm test` to run the test runner interactively
 - `npm run build` to build the app for production to the `build` folder
+- `npx prettier --write ` to run prettier formatting checks
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
@@ -38,6 +39,7 @@ There is also implemented a chart that displays the number of commits that each 
 The application is implemented in React with TypeScript. 
 All components are React functional components, except for Button.tsx which is a class component. 
 I think Ole has used the Context API. 
+We have used the formatting tool Prettier to ensure a common coding style in the project. 
 
 ### Fetching GitLab data
 Data from the GitLab API is fetched with AJAX (Asynchronous JavaScript)
@@ -58,7 +60,7 @@ We have used the React component library [Mantine](https://mantine.dev) to creat
 ### UI and responsiveness
 
 
-## 🚀Git guidelines
+## 🚀Git guidelines 
 
 All tasks should be documented in a issue. When picking a issue it should have its own branch. We have disabled pushing to main branch, the only way to add code is to use merge requests. When merging to main branch, the commits should be squashed.
 
