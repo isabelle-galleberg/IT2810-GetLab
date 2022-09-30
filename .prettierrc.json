@@ -1,14 +1,1 @@
-{
-	"arrowParens": "always",
-	"bracketSameLine": true,
-	"embeddedLanguageFormatting": "auto",
-	"endOfLine": "lf",
-	"htmlWhitespaceSensitivity": "css",
-	"jsxSingleQuote": true,
-	"printWidth": 80,
-	"proseWrap": "preserve",
-	"quoteProps": "as-needed",
-	"singleAttributePerLine": true,
-	"singleQuote": true,
-	"tabWidth": 2
-}
+{ "endOfLine": "auto" }
