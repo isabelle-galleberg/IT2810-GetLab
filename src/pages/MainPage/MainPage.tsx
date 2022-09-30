@@ -1,12 +1,14 @@
 import { Select } from "@mantine/core";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import CommitsWrapper from "../../components/Wrappers/CommitsWrapper";
 import IssuesWrapper from "../../components/Wrappers/IssuesWrapper";
 import "./MainPage.css";
 import { Pagination } from "@mantine/core";
 import Chart from "../../components/CommitsChart/CommitsChart";
+import { GitlabContext } from "../../context/GitlabContext";
 
 export default function MainPage() {
+  const { projectId, apiSecret } = useContext(GitlabContext);
   const [value, setValue] = useState<string | null>(null);
   const [pageinator, setPageinator] = useState<any>({
     page: 1,
@@ -56,7 +58,7 @@ export default function MainPage() {
         />
       )}
       {value === "commitsChart" && (
-        <Chart projectId={"17379"} token={"glpat-GPrQJsa8_WicT1Fo5Ve1"} />
+        <Chart projectId={projectId} token={apiSecret} />
       )}
       <br />
       {(value === "commits" || value === "issues") && (

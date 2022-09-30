@@ -1,28 +1,12 @@
-import { getValue } from "@testing-library/user-event/dist/utils";
-import { createContext, FC, useState } from "react";
+import { createContext } from "react";
 
 export type GitlabCredentials = {
   projectId: string;
+  setProjectId: (c: string) => void;
   apiSecret: string;
+  setApiSecret: (c: string) => void;
 };
 
-const contextDefaultValues: GitlabCredentials = {
-  projectId: "",
-  apiSecret: "",
-};
-
-export const GitlabContext =
-  createContext<GitlabCredentials>(contextDefaultValues);
-
-const GitlabContextProvider: FC = ({ children }: any) => {
-  const [projectId, setProjectId] = useState<string>(
-    contextDefaultValues.projectId
-  );
-  const [apiSecret, setApiSecret] = useState<string>(
-    contextDefaultValues.projectId
-  );
-
-  return <GitlabContext.Provider value={}>{children}</GitlabContext.Provider>;
-};
-
-export default GitlabContextProvider;
+export const GitlabContext = createContext<GitlabCredentials>(
+  {} as GitlabCredentials
+);

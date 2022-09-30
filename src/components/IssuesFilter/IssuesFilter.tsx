@@ -1,13 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import issueService from "../../services/issueService";
 import { MultiSelect, Select } from "@mantine/core";
 import "./IssuesFilter.css";
 import memberService from "../../services/memberService";
+import { GitlabContext } from "../../context/GitlabContext";
 
 export default function IssuesFilter({
   setFilterCreator,
   setFilterLabels,
 }: any) {
+  const { projectId, apiSecret } = useContext(GitlabContext);
   const [allLabels, setAllLabels] = useState<any[]>([]);
   const [creators, setCreators] = useState<any[]>([]);
 
@@ -20,13 +22,11 @@ export default function IssuesFilter({
   }
 
   useEffect(() => {
-    issueService
-      .getLabels("17379", "glpat-GPrQJsa8_WicT1Fo5Ve1")
-      .then((labels: any[]) => {
-        setAllLabels(labels);
-      });
+    issueService.getLabels(projectId, apiSecret).then((labels: any[]) => {
+      setAllLabels(labels);
+    });
     memberService
-      .getActiveMembers("17379", "glpat-GPrQJsa8_WicT1Fo5Ve1")
+      .getActiveMembers(projectId, apiSecret)
       .then((creators: any[]) => {
         setCreators(creators);
       });

@@ -2,11 +2,11 @@ import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MainPage from "./pages/MainPage/MainPage";
 import StartPage from "./pages/StartPage/StartPage";
-import { GitlabContext } from "./context/GitlabContext";
-import { useMemo } from "react";
+import { GitlabContext, GitlabCredentials } from "./context/GitlabContext";
+import { useState } from "react";
 function App() {
-  const providerValue = useMemo(() => ({ value, setValue }), [value, setValue]);
-
+  const [projectId, setProjectId] = useState<string>("");
+  const [apiSecret, setApiSecret] = useState<string>("");
   return (
     <div className="container">
       <header>
@@ -20,7 +20,16 @@ function App() {
         <h1>Get your GitLab data with GetLab!</h1>
       </header>
       <main>
-        <GitlabContext.Provider>
+        <GitlabContext.Provider
+          value={
+            {
+              projectId,
+              setProjectId,
+              apiSecret,
+              setApiSecret,
+            } as GitlabCredentials
+          }
+        >
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<StartPage />} />

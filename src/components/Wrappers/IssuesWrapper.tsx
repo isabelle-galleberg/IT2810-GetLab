@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { GitlabContext } from "../../context/GitlabContext";
 import issueService from "../../services/issueService";
 import IssueCard from "../IssueCard/IssueCard";
 import IssuesFilter from "../IssuesFilter/IssuesFilter";
@@ -9,16 +10,12 @@ export default function IssuesWrapper({ pageinator }: any) {
   const [issuesByLabels, setIssuesByLabels] = useState<any[]>([]);
   const [filterCreator, setFilterCreator] = useState<any>({ creator: null });
   const [filterLabels, setFilterLabels] = useState<any>({ labels: [] });
+  const { apiSecret, projectId } = useContext(GitlabContext);
 
   useEffect(() => {
     setIssues([]);
     issueService
-      .getIssues(
-        "17379",
-        "glpat-GPrQJsa8_WicT1Fo5Ve1",
-        pageinator.perPage,
-        pageinator.page
-      )
+      .getIssues(projectId, apiSecret, pageinator.perPage, pageinator.page)
       .then((res: any) => {
         res.data.map((data: any) => {
           if (
@@ -34,11 +31,7 @@ export default function IssuesWrapper({ pageinator }: any) {
   useEffect(() => {
     setIssuesByLabels([]);
     issueService
-      .getIssuesByLabels(
-        "17379",
-        filterLabels.labels,
-        "glpat-GPrQJsa8_WicT1Fo5Ve1"
-      )
+      .getIssuesByLabels(projectId, filterLabels.labels, apiSecret)
       .then((res: any) => {
         res.map((data: any) => {
           if (
