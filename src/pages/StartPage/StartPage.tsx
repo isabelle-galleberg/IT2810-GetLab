@@ -1,8 +1,7 @@
-import React, { useState } from "react"
-import "./StartPage.css"
+import React, { useState } from "react";
+import "./StartPage.css";
 import Button from "../../components/Button/Button";
 import TextField from "../../components/TextField/TextField";
-
 
 export default function StartPage() {
   const [projectId, setProjectId] = useState<string | null>(null);
@@ -13,13 +12,13 @@ export default function StartPage() {
   const changeName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setProjectId(e.target.value);
     setErrorMessage(false);
-  }
+  };
 
   // when changing text field, update api value and hide error message
   const changeApi = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAccessToken(e.target.value);
     setErrorMessage(false);
-  }
+  };
 
   const onConnect = (e: any) => {
     e.preventDefault();
@@ -29,12 +28,11 @@ export default function StartPage() {
     // else:
     if (!Boolean(projectId) || !Boolean(accessToken)) {
       setErrorMessage(true);
-    }
-    else {
+    } else {
       console.log("Project ID: " + projectId);
       console.log("Access token: " + accessToken);
     }
-  }
+  };
 
   return (
     <div className="credentialsContainer">
@@ -42,16 +40,24 @@ export default function StartPage() {
       <h3>Please enter your credentials</h3>
       <div className="formWrapper">
         <form>
-          <TextField onChange={e => changeName(e)} placeholder="Project ID"></TextField>
-          <TextField onChange={e => changeApi(e)} placeholder="Access token"></TextField>
-          <Button onClick={e => onConnect(e)} disabled={false}>Connect</Button>
-          {errorMessage &&
+          <TextField
+            onChange={(e) => changeName(e)}
+            placeholder="Project ID"
+          ></TextField>
+          <TextField
+            onChange={(e) => changeApi(e)}
+            placeholder="Access token"
+          ></TextField>
+          <Button onClick={(e) => onConnect(e)} disabled={false}>
+            Connect
+          </Button>
+          {errorMessage && (
             <p className="errorMessage">
               Empty input field, fill in your credentials!
             </p>
-          }
+          )}
         </form>
       </div>
-    </div >
+    </div>
   );
 }

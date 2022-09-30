@@ -1,38 +1,38 @@
 .container {
-	display: flex;
-	flex-direction: column;
-	height: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 header {
-	margin-top: 25px;
-	width: 100%;
-	display: flex;
-	align-items: center;
-	gap: 16px;
+  margin-top: 25px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 header h1 {
-	font-size: 16px;
+  font-size: 16px;
 }
 
 .getLabLogo {
-	max-width: 100px;
+  max-width: 100px;
 }
 
 footer {
-	display: flex;
-	margin-top: auto;
-	padding: 24px;
-	justify-content: flex-end;
+  display: flex;
+  margin-top: auto;
+  padding: 24px;
+  justify-content: flex-end;
 }
 
 footer p {
-	margin: 0;
+  margin: 0;
 }
 
 @media screen and (max-width: 500px) {
-	.getLabLogo {
-		width: 75px;
-	}
+  .getLabLogo {
+    width: 75px;
+  }
 }

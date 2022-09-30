@@ -2,11 +2,11 @@ export interface ButtonProps {
   onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
   children?: React.ReactNode;
   disabled?: boolean;
-};
+}
 export interface CommitCardProps {
-	title: string;
-	committedAt: string;
-	author: string;
+  title: string;
+  committedAt: string;
+  author: string;
 }
 export interface CommitsChartProps {
   projectId: string;
