@@ -19,7 +19,7 @@ export default function CommitsWrapper({ pageinator, setPageinator }: any) {
         setCommits(commits);
         setPageinator(null, commits.length);
       });
-  }, []);
+  }, [filter]);
 
   return (
     <div>
