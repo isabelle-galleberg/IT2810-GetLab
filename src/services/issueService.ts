@@ -1,5 +1,7 @@
+
+// Returns the response of an api call to get the issues of a project and how many pages the response has
 async function getIssues(
-  projectID: string,
+  projectId: string,
   privateToken: string,
   numberOfIssues: string,
   page: number
@@ -7,7 +9,7 @@ async function getIssues(
   try {
     const response = await fetch(
       "https://gitlab.stud.idi.ntnu.no/api/v4/projects/" +
-        projectID +
+        projectId +
         "/issues?per_page=" +
         numberOfIssues +
         "&private_token=" +
@@ -23,8 +25,9 @@ async function getIssues(
   }
 }
 
+// Returns the response of an api call to get the issues with a set of given labels
 async function getIssuesByLabels(
-  projectID: string,
+  projectId: string,
   labelList: string[],
   privateToken: string
 ): Promise<any> {
@@ -32,7 +35,7 @@ async function getIssuesByLabels(
     const labelString = labelList.join(",");
     const response = await fetch(
       "https://gitlab.stud.idi.ntnu.no/api/v4/projects/" +
-        projectID +
+        projectId +
         "/issues?labels=" +
         labelString +
         "&private_token=" +
@@ -46,26 +49,34 @@ async function getIssuesByLabels(
 }
 
 // Returns a list of all labelnames in a project
-async function getLabels(projectId: string, privateToken: string): Promise<any> {
-    try {
-        const response = await fetch('https://gitlab.stud.idi.ntnu.no/api/v4/projects/' + projectId +'/labels?private_token=' + privateToken);
-        const data = await response.json();
-        let labelList: string[] = [];
-        for (const label of data){
-            if (!labelList.includes(label.name)){
-                labelList.push(label.name);
-            }
-        }
-        return labelList;
-    } catch (error) {
-        console.log(error);
+async function getLabels(
+  projectId: string,
+  privateToken: string
+): Promise<any> {
+  try {
+    const response = await fetch(
+      "https://gitlab.stud.idi.ntnu.no/api/v4/projects/" +
+        projectId +
+        "/labels?private_token=" +
+        privateToken
+    );
+    const data = await response.json();
+    let labelList: string[] = [];
+    for (const label of data) {
+      if (!labelList.includes(label.name)) {
+        labelList.push(label.name);
+      }
     }
-}   
+    return labelList;
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 const issueService = {
-    getIssues,
-    getIssuesByLabels,
-    getLabels
-}
+  getIssues,
+  getIssuesByLabels,
+  getLabels,
+};
 
 export default issueService;

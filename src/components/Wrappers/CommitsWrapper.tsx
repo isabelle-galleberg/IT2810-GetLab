@@ -43,7 +43,7 @@ export default function CommitsWrapper({ pageinator, setPageinator }: any) {
                 key={res.id}
                 title={res.title}
                 committedAt={res.committed_date.slice(0, 10)}
-                author={res.committer_name}
+                author={res.author_name}
               />
             );
           })}
