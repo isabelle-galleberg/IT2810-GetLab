@@ -1,4 +1,4 @@
 .commitsChart {
-	max-width: clamp(200px, calc(90vw), 800px);
-	max-height: 500px;
+  max-width: clamp(200px, calc(90vw), 800px);
+  max-height: 500px;
 }
