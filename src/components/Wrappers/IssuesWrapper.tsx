@@ -7,42 +7,50 @@ import "./Wrapper.css";
 export default function IssuesWrapper({ pageinator }: any) {
   const [issues, setIssues] = useState<any[]>([]);
   const [issuesByLabels, setIssuesByLabels] = useState<any[]>([]);
-  const [filterCreator, setFilterCreator] = useState<any>({creator: null});
-  const [filterLabels, setFilterLabels] = useState<any>({labels: []});
+  const [filterCreator, setFilterCreator] = useState<any>({ creator: null });
+  const [filterLabels, setFilterLabels] = useState<any>({ labels: [] });
 
   useEffect(() => {
     setIssues([]);
     issueService
-    .getIssues(
-      "17379",
-      "glpat-GPrQJsa8_WicT1Fo5Ve1",
-      pageinator.perPage,
-      pageinator.page
-    ).then((res: any)=>{
-      res.data.map((data: any) => {
-        if (filterCreator.creator === data.author.name || filterCreator.creator === null ){
-          setIssues(issues => [...issues, data])
-        }
-      })
-    });
+      .getIssues(
+        "17379",
+        "glpat-GPrQJsa8_WicT1Fo5Ve1",
+        pageinator.perPage,
+        pageinator.page
+      )
+      .then((res: any) => {
+        res.data.map((data: any) => {
+          if (
+            filterCreator.creator === data.author.name ||
+            filterCreator.creator === null
+          ) {
+            setIssues((issues) => [...issues, data]);
+          }
+        });
+      });
   }, [filterCreator, filterLabels]);
 
   useEffect(() => {
     setIssuesByLabels([]);
     issueService
-    .getIssuesByLabels(
-      "17379",
-      filterLabels.labels,
-      "glpat-GPrQJsa8_WicT1Fo5Ve1"
-    ).then((res: any) => {
-      res.map((data: any) => {
-        console.log(data);
-        if (filterCreator.creator === data.author.name || filterCreator.creator === null ){
-          console.log("in if");
-          setIssuesByLabels(issuesByLabels => [...issuesByLabels, data])
-        }
-      })
-    });
+      .getIssuesByLabels(
+        "17379",
+        filterLabels.labels,
+        "glpat-GPrQJsa8_WicT1Fo5Ve1"
+      )
+      .then((res: any) => {
+        res.map((data: any) => {
+          console.log(data);
+          if (
+            filterCreator.creator === data.author.name ||
+            filterCreator.creator === null
+          ) {
+            console.log("in if");
+            setIssuesByLabels((issuesByLabels) => [...issuesByLabels, data]);
+          }
+        });
+      });
   }, [filterCreator, filterLabels]);
 
   console.log("issues:", issues);
@@ -51,19 +59,18 @@ export default function IssuesWrapper({ pageinator }: any) {
   return (
     <div>
       <div className="issuesFilter">
-        <IssuesFilter 
-          filterLabels = {filterLabels}
-          setFilterLabels = {setFilterLabels}
-          filterCreator = {filterCreator}
-          setFilterCreator = {setFilterCreator}
-        >
-        </IssuesFilter>
+        <IssuesFilter
+          filterLabels={filterLabels}
+          setFilterLabels={setFilterLabels}
+          filterCreator={filterCreator}
+          setFilterCreator={setFilterCreator}
+        ></IssuesFilter>
       </div>
       <div className="issueCards">
-        {(filterLabels.labels.length < 1 || filterLabels.labels.length === undefined )
-         &&
+        {(filterLabels.labels.length < 1 ||
+          filterLabels.labels.length === undefined) &&
           issues.map((res: any) => {
-            return ( 
+            return (
               <IssueCard
                 key={res.id}
                 title={res.title}
@@ -74,10 +81,9 @@ export default function IssuesWrapper({ pageinator }: any) {
               />
             );
           })}
-        {(filterLabels.labels.length > 0)
-          &&
+        {filterLabels.labels.length > 0 &&
           issuesByLabels.map((res: any) => {
-            return ( 
+            return (
               <IssueCard
                 key={res.id}
                 title={res.title}
@@ -87,8 +93,7 @@ export default function IssuesWrapper({ pageinator }: any) {
                 issueNumber={res.iid}
               />
             );
-          })
-        }
+          })}
       </div>
     </div>
   );
