@@ -21,8 +21,6 @@ export default function IssuesWrapper(props: any) {
   }, [props.pageinator.page]);
 
   return (
-    <div>
-      issuesFilter
       <div className="issueCards">
         {issues.map((res: any) => {
           return (
@@ -37,6 +35,5 @@ export default function IssuesWrapper(props: any) {
           );
         })}
       </div>
-    </div>
   );
 }
