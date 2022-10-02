@@ -32,20 +32,22 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 GetLab presents GitLab data for issues and commits for the chosen project. For commits, the user parametizing consists of filtering commits based on the author and a chosen time frame. There is also implemented a chart that displays how many commits each member has contributed to the project. The chart is created with the vertical bar chart from [react-chartjs-2](https://react-chartjs-2.js.org/examples/vertical-bar-chart/). The chart displays bars based on email, such that group members that have syncronized GitLab to GitHub may appear with two separate bars. 
 
 For issues, the user can filter based on selected labels and author. The data is paginated, such that the user only can view 5 issues or 10 commits at a time. 
+TODO: CHANGE INFO ACCORDING TO NEW PAGINATION
 
 
 ### React with TypeScript
 The application is implemented in React with TypeScript. All components are React functional components, except for Button.tsx which is a class component. We have used the formatting tool Prettier to ensure a common coding style in the project. 
 
-@Ole has used the context API for ..
+TODO: CONTEXT API
 
 We have used the React component library [Mantine](https://mantine.dev) to create some of the components for the applicatoin, such as the pagination, datepicker and dropdown menus. 
 
 ### Fetching GitLab data
 Data from the GitLab API is fetched with AJAX (Asynchronous JavaScript). 
+TODO: DESCRIBE API REQUESTS
 
 ### HTML Web Storage
-Localstorage and sessionstorage.
+TODO: LOCALSTORAGE AND SESSION STORAGE
 
 ### UI and responsiveness
 For screens smaller than 500px in width, the website will decrease the font-size and size of GetLab logo. This is implemented using media-queries. We have used vw (view width) for the commit/issue cards and chart to make the component scale according to screen size. If the labels of an issue card are wider than the card itself, the labels can be scrolled horizontally. 
@@ -64,7 +66,7 @@ The application has been tested on a computer screen, iPad and iPhone XR both ho
 
 ## 🚀Git guidelines 
 
-All development tasks are documented in a issue. After assigning yourself to an issue, the issue should be solved in its own branch. We have disabled pushing to main branch, such that the only way to add code is though merge requests. When merging with main branch, the commits should be squashed.
+All development tasks are documented in a issue with appropriate labels. After assigning yourself to an issue, the issue should be solved in its own branch. We have disabled pushing to main branch, such that the only way to add code is though merge requests. When merging with main branch, the commits should be squashed.
 
 ### Semantic Commit Messages
 
