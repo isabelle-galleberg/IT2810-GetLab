@@ -44,6 +44,18 @@ export default function MainPage() {
     setPageinator(data);
   }
 
+  function getLabelOfStoredValue() {
+    if (typeof Storage !== "undefined") {
+      if (sessionStorage.value !== null) {
+        if (sessionStorage.value === "commits") return "Commit log";
+        else if (sessionStorage.value === "issues") return "Issues";
+        else if (sessionStorage.value === "commitsChart")
+          return "Commits chart";
+      }
+    }
+    return "Pick one";
+  }
+
   useEffect(() => {
     setDisplayType("");
   }, []);
@@ -52,7 +64,7 @@ export default function MainPage() {
     <div className="mainPage">
       <Select
         className="select"
-        placeholder="Pick one"
+        placeholder={getLabelOfStoredValue()}
         onChange={setDisplayType}
         data={[
           { value: "commits", label: "Commit log" },
