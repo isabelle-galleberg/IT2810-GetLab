@@ -48,15 +48,18 @@ Data from the GitLab API is fetched with AJAX (Asynchronous JavaScript).
 Localstorage and sessionstorage.
 
 ### UI and responsiveness
-The application does not support devices with a smaller screen width than 280px, as this is very unusual. For screens smaller than 500px in width, the website will decrease the font-size and size of GetLab logo. This is implemented using media-queries. We have used vw (view width) for the commit/issue cards and chart to make the component scale according to screen size. If the labels of an issue card are wider than the card itself, the labels can be scrolled horizontally. 
+For screens smaller than 500px in width, the website will decrease the font-size and size of GetLab logo. This is implemented using media-queries. We have used vw (view width) for the commit/issue cards and chart to make the component scale according to screen size. If the labels of an issue card are wider than the card itself, the labels can be scrolled horizontally. 
 
 
 
 ## 🧪Testing
 
 ### Jest
+We have used the testing framework Jest for some unit tests, using its built-in functions. One of the tests that were performed is to check whether the app crashes on render, by testing the <App> component. The utility function `getCommitsPerAuthor` has also been tested, which is used to display the data in the bar chart. Snapshot tests are useful when wanting to make sure that the UI does not change unexpectedly. The tests generate a json version of a component, to check if this matches an earlier representation. We created snapshot tests for the CommitCard and IssueCard components with use of the react-test-renderer, to ensure that they rendered as expected with data.
 
 ### UI and responsiveness
+The application has been tested on a computer screen, iPad and iPhone XR both horizontally and vertically oriented (see appendix). For each of the screen sizes, all pages and components were tested thoroughly through user interaction. Using Chrome developers tools, the application was ensured perform well when dynamically changing the screen size, as long as the screen width is bigger than 280px. The application was tested in both Chrome and Safari. 
+
 
 
 ## 🚀Git guidelines 
