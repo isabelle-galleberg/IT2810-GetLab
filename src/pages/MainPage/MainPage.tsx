@@ -27,7 +27,7 @@ export default function MainPage() {
     let data = {};
     if (maxPages != null) data = { ...pageinator, total: maxPages };
     else if (maxItems != null)
-      data = { ...pageinator, total: maxItems / pageinator.perPage };
+      data = { ...pageinator, total: Math.ceil(maxItems / pageinator.perPage) };
     setPageinator(data);
   }
 
