@@ -30,7 +30,6 @@ export default function StartPage() {
 
   const connectUsingPrevCred = async (e: any) => {
     e.preventDefault();
-    debugger;
     const projectIdLocal = localStorage.getItem("projectId");
     const apiSecretLocal = localStorage.getItem("apiSecret");
     if (projectIdLocal != null && apiSecretLocal != null) {

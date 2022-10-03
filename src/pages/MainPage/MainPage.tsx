@@ -39,7 +39,6 @@ export default function MainPage() {
   useEffect(() => {
     // Validate credentials
     branchService.getBranches(projectId, apiSecret).then((branches) => {
-      debugger;
       if (!branches) {
         navigate("/");
       }
