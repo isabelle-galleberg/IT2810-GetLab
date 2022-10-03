@@ -1,24 +1,28 @@
-// Returns the response of an api call to get one page of issues.
+// Returns the response of an api call to get the issues. Iterates through all pages.
 async function getIssues(
   projectId: string,
-  privateToken: string,
-  numberOfIssues: string,
-  page: number
+  privateToken: string
 ): Promise<any> {
   try {
-    const response = await fetch(
-      "https://gitlab.stud.idi.ntnu.no/api/v4/projects/" +
+    let data: any[] = [];
+    let response_size = 100;
+    let page = 0;
+    while (response_size == 100) {
+      page++;
+      const response = await fetch(
+        "https://gitlab.stud.idi.ntnu.no/api/v4/projects/" +
         projectId +
-        "/issues?per_page=" +
-        numberOfIssues +
+        "/issues?per_page=100" +
         "&private_token=" +
         privateToken +
         "&page=" +
         page
-    );
-    const data = await response.json();
-    const totalPages = response.headers.get("X-Total-Pages");
-    return { data, totalPages };
+      );
+      const response_data = await response.json();
+      response_size = response_data.length;
+      data = data.concat(response_data);
+    }
+    return data;
   } catch (error) {
     console.log(error);
   }
@@ -33,23 +37,23 @@ async function getIssuesByLabels(
   try {
     let data: any[] = [];
     let response_size = 100;
-    let page = 1;
+    let page = 0;
     while (response_size == 100) {
+      page++;
       const labelString = labelList.join(",");
       const response = await fetch(
         "https://gitlab.stud.idi.ntnu.no/api/v4/projects/" +
-          projectId +
-          "/issues?labels=" +
-          encodeURIComponent(labelString) +
-          "&per_page=100&private_token=" +
-          privateToken +
-          "&page=" +
-          page
+        projectId +
+        "/issues?labels=" +
+        encodeURIComponent(labelString) +
+        "&per_page=100&private_token=" +
+        privateToken +
+        "&page=" +
+        page
       );
       const response_data = await response.json();
       response_size = response_data.length;
       data = data.concat(response_data);
-      page++;
     }
     return data;
   } catch (error) {
@@ -69,11 +73,11 @@ async function getLabels(
     while (response_size == 100) {
       const response = await fetch(
         "https://gitlab.stud.idi.ntnu.no/api/v4/projects/" +
-          projectId +
-          "/labels?per_page=100&private_token=" +
-          privateToken +
-          "&page=" +
-          page
+        projectId +
+        "/labels?per_page=100&private_token=" +
+        privateToken +
+        "&page=" +
+        page
       );
       const response_data = await response.json();
       response_size = response_data.length;
