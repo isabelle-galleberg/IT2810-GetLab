@@ -1,5 +1,5 @@
 import { Select } from "@mantine/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CommitsWrapper from "../../components/Wrappers/CommitsWrapper";
 import IssuesWrapper from "../../components/Wrappers/IssuesWrapper";
 import "./MainPage.css";
@@ -15,8 +15,21 @@ export default function MainPage() {
   });
 
   function setDisplayType(value: string) {
-    setValue(value);
-    setPage(1);
+    if (typeof Storage !== "undefined") {
+      if (value === "") {
+        if (sessionStorage.value !== null) {
+          setValue(sessionStorage.value);
+          setPage(1);
+        }
+      } else {
+        sessionStorage.value = value;
+        setValue(value);
+        setPage(1);
+      }
+    } else if (value !== "") {
+      setValue(value);
+      setPage(1);
+    }
   }
 
   function setPage(page: number) {
@@ -31,11 +44,27 @@ export default function MainPage() {
     setPageinator(data);
   }
 
+  function getLabelOfStoredValue() {
+    if (typeof Storage !== "undefined") {
+      if (sessionStorage.value !== null) {
+        if (sessionStorage.value === "commits") return "Commit log";
+        else if (sessionStorage.value === "issues") return "Issues";
+        else if (sessionStorage.value === "commitsChart")
+          return "Commits chart";
+      }
+    }
+    return "Pick one";
+  }
+
+  useEffect(() => {
+    setDisplayType("");
+  }, []);
+
   return (
     <div className="mainPage">
       <Select
         className="select"
-        placeholder="Pick one"
+        placeholder={getLabelOfStoredValue()}
         onChange={setDisplayType}
         data={[
           { value: "commits", label: "Commit log" },
