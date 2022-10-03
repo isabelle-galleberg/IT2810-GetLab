@@ -7,5 +7,6 @@ export interface Issue {
   title: string;
   description: string;
   labels: string[];
-  author: { name: string };
+  author: { name: string; username: string };
+  updated_at: string;
 }

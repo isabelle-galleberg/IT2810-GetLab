@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import issueService from "../../services/issueService";
+import { Issue } from "../../types/api/issue";
 import IssueCard from "../IssueCard/IssueCard";
 import IssuesFilter from "../IssuesFilter/IssuesFilter";
 import "./Wrapper.css";
 
-export default function IssuesWrapper({ pageinator }: any) {
-  const [issues, setIssues] = useState<any[]>([]);
-  const [issuesByLabels, setIssuesByLabels] = useState<any[]>([]);
-  const [filterCreator, setFilterCreator] = useState<any>({ creator: null });
-  const [filterLabels, setFilterLabels] = useState<any>({ labels: [] });
+export default function IssuesWrapper({ paginator }: any) {
+  const [issues, setIssues] = useState<Issue[]>([]);
+  const [issuesByLabels, setIssuesByLabels] = useState<Issue[]>([]);
+  const [creator, setCreator] = useState<string | null>(null);
+  const [filterLabels, setFilterLabels] = useState<string[]>([]);
 
   useEffect(() => {
     setIssues([]);
@@ -16,40 +17,30 @@ export default function IssuesWrapper({ pageinator }: any) {
       .getIssues(
         "17379",
         "glpat-GPrQJsa8_WicT1Fo5Ve1",
-        pageinator.perPage,
-        pageinator.page
+        paginator.perPage,
+        paginator.page
       )
-      .then((res: any) => {
-        res.data.map((data: any) => {
-          if (
-            filterCreator.creator === data.author.name ||
-            filterCreator.creator === null
-          ) {
+      .then((res: { data: Issue[] }) => {
+        res.data.map((data: Issue) => {
+          if (creator === data.author.name || creator === null) {
             setIssues((issues) => [...issues, data]);
           }
         });
       });
-  }, [filterCreator, filterLabels]);
+  }, [creator, filterLabels]);
 
   useEffect(() => {
     setIssuesByLabels([]);
     issueService
-      .getIssuesByLabels(
-        "17379",
-        filterLabels.labels,
-        "glpat-GPrQJsa8_WicT1Fo5Ve1"
-      )
-      .then((res: any) => {
-        res.map((data: any) => {
-          if (
-            filterCreator.creator === data.author.name ||
-            filterCreator.creator === null
-          ) {
+      .getIssuesByLabels("17379", filterLabels, "glpat-GPrQJsa8_WicT1Fo5Ve1")
+      .then((res: Issue[]) => {
+        res.map((data: Issue) => {
+          if (creator === data.author.name || creator === null) {
             setIssuesByLabels((issuesByLabels) => [...issuesByLabels, data]);
           }
         });
       });
-  }, [filterCreator, filterLabels]);
+  }, [creator, filterLabels]);
 
   return (
     <div>
@@ -57,14 +48,13 @@ export default function IssuesWrapper({ pageinator }: any) {
         <IssuesFilter
           filterLabels={filterLabels}
           setFilterLabels={setFilterLabels}
-          filterCreator={filterCreator}
-          setFilterCreator={setFilterCreator}
+          creator={creator}
+          setCreator={setCreator}
         ></IssuesFilter>
       </div>
       <div className="issueCards">
-        {(filterLabels.labels.length < 1 ||
-          filterLabels.labels.length === undefined) &&
-          issues.map((res: any) => {
+        {(filterLabels.length < 1 || filterLabels.length === undefined) &&
+          issues.map((res: Issue) => {
             return (
               <IssueCard
                 key={res.id}
@@ -76,8 +66,8 @@ export default function IssuesWrapper({ pageinator }: any) {
               />
             );
           })}
-        {filterLabels.labels.length > 0 &&
-          issuesByLabels.map((res: any) => {
+        {filterLabels.length > 0 &&
+          issuesByLabels.map((res: Issue) => {
             return (
               <IssueCard
                 key={res.id}

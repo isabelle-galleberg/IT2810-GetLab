@@ -15,7 +15,7 @@ export interface CommitsChartProps {
 export interface IssueCardProps {
   title: string;
   labels: string[];
-  issueNumber: number;
+  issueNumber: string;
   createdAt: string;
   author: string;
 }
@@ -27,7 +27,7 @@ export interface TextFieldProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export interface PageProps {
+export interface PaginatorProps {
   page: number;
   perPage: number;
   total: number;
