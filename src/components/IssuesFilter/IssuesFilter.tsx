@@ -8,8 +8,9 @@ export default function IssuesFilter({
   setFilterCreator,
   setFilterLabels,
 }: any) {
-  const [allLabels, setAllLabels] = useState<any[]>([]);
-  const [creators, setCreators] = useState<any[]>([]);
+  
+  const [allLabels, setAllLabels] = useState<string[]>([]);
+  const [creators, setCreators] = useState<string[]>([]);
 
   function setCreator(creator: string) {
     setFilterCreator({ ...setFilterCreator, creator });
@@ -22,12 +23,12 @@ export default function IssuesFilter({
   useEffect(() => {
     issueService
       .getLabels("17379", "glpat-GPrQJsa8_WicT1Fo5Ve1")
-      .then((labels: any[]) => {
+      .then((labels: string[]) => {
         setAllLabels(labels);
       });
     memberService
       .getActiveMembers("17379", "glpat-GPrQJsa8_WicT1Fo5Ve1")
-      .then((creators: any[]) => {
+      .then((creators: string[]) => {
         setCreators(creators);
       });
   }, []);

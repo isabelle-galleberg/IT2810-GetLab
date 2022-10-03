@@ -5,11 +5,11 @@ import IssueCard from "../IssueCard/IssueCard";
 import IssuesFilter from "../IssuesFilter/IssuesFilter";
 import "./Wrapper.css";
 
-export default function IssuesWrapper({ paginator }: any) {
+export default function IssuesWrapper({ pageinator }: any) {
   const [issues, setIssues] = useState<Issue[]>([]);
   const [issuesByLabels, setIssuesByLabels] = useState<Issue[]>([]);
-  const [creator, setCreator] = useState<string | null>(null);
-  const [filterLabels, setFilterLabels] = useState<string[]>([]);
+  const [filterCreator, setFilterCreator] = useState<any>({ creator: null });
+  const [filterLabels, setFilterLabels] = useState<any>({ labels: [] });
 
   useEffect(() => {
     setIssues([]);
@@ -17,30 +17,40 @@ export default function IssuesWrapper({ paginator }: any) {
       .getIssues(
         "17379",
         "glpat-GPrQJsa8_WicT1Fo5Ve1",
-        paginator.perPage,
-        paginator.page
+        pageinator.perPage,
+        pageinator.page
       )
       .then((res: { data: Issue[] }) => {
         res.data.map((data: Issue) => {
-          if (creator === data.author.name || creator === null) {
+          if (
+            filterCreator.creator === data.author.name ||
+            filterCreator.creator === null
+          ) {
             setIssues((issues) => [...issues, data]);
           }
         });
       });
-  }, [creator, filterLabels]);
+  }, [filterCreator, filterLabels]);
 
   useEffect(() => {
     setIssuesByLabels([]);
     issueService
-      .getIssuesByLabels("17379", filterLabels, "glpat-GPrQJsa8_WicT1Fo5Ve1")
+      .getIssuesByLabels(
+        "17379",
+        filterLabels.labels,
+        "glpat-GPrQJsa8_WicT1Fo5Ve1"
+      )
       .then((res: Issue[]) => {
         res.map((data: Issue) => {
-          if (creator === data.author.name || creator === null) {
+          if (
+            filterCreator.creator === data.author.name ||
+            filterCreator.creator === null
+          ) {
             setIssuesByLabels((issuesByLabels) => [...issuesByLabels, data]);
           }
         });
       });
-  }, [creator, filterLabels]);
+  }, [filterCreator, filterLabels]);
 
   return (
     <div>
@@ -48,12 +58,13 @@ export default function IssuesWrapper({ paginator }: any) {
         <IssuesFilter
           filterLabels={filterLabels}
           setFilterLabels={setFilterLabels}
-          creator={creator}
-          setCreator={setCreator}
+          filterCreator={filterCreator}
+          setFilterCreator={setFilterCreator}
         ></IssuesFilter>
       </div>
       <div className="issueCards">
-        {(filterLabels.length < 1 || filterLabels.length === undefined) &&
+        {(filterLabels.labels.length < 1 ||
+          filterLabels.labels.length === undefined) &&
           issues.map((res: Issue) => {
             return (
               <IssueCard
@@ -66,7 +77,7 @@ export default function IssuesWrapper({ paginator }: any) {
               />
             );
           })}
-        {filterLabels.length > 0 &&
+        {filterLabels.labels.length > 0 &&
           issuesByLabels.map((res: Issue) => {
             return (
               <IssueCard

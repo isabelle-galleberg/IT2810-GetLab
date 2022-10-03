@@ -5,12 +5,11 @@ import IssuesWrapper from "../../components/Wrappers/IssuesWrapper";
 import "./MainPage.css";
 import { Pagination } from "@mantine/core";
 import Chart from "../../components/CommitsChart/CommitsChart";
-import { PageProps } from '../../types/propTypes';
-
+import { PaginatorProps } from "../../types/propTypes";
 
 export default function MainPage() {
   const [value, setValue] = useState<string | null>(null);
-  const [pageinator, setPageinator] = useState<PageProps>({
+  const [pageinator, setPageinator] = useState<PaginatorProps>({
     page: 1,
     perPage: 10,
     total: 1,
