@@ -21,6 +21,8 @@ export default function CommitsWrapper({ pageinator, setPageinator }: any) {
       });
   }, [filter]);
 
+  const commitsPerPage = commits.slice((pageinator.page - 1) * pageinator.perPage, pageinator.page * pageinator.perPage);
+
   return (
     <div>
       <div className="commitFilter">
@@ -29,14 +31,11 @@ export default function CommitsWrapper({ pageinator, setPageinator }: any) {
           setBranches={setBranches}
           filter={filter}
           setFilter={setFilter}
+          onChange={pageinator.page = 1}
         ></CommitFilter>
       </div>
       <div className="commitCards">
-        {commits
-          .splice(
-            (pageinator.page - 1) * pageinator.perPage,
-            pageinator.page * pageinator.perPage
-          )
+        {commitsPerPage
           .map((res: any) => {
             return (
               <CommitCard
@@ -46,7 +45,8 @@ export default function CommitsWrapper({ pageinator, setPageinator }: any) {
                 author={res.author_name}
               />
             );
-          })}
+          })
+        }
       </div>
     </div>
   );
