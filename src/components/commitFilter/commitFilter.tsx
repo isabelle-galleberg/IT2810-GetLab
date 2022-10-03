@@ -11,7 +11,6 @@ function CommitFilter({
   filter,
   setBranches,
   branches,
-  branch,
 }: any) {
   const updateBranch = (branch: string) => {
     setFilter({ ...filter, branch: branch });
