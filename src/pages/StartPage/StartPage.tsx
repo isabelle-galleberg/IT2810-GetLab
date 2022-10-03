@@ -20,7 +20,7 @@ export default function StartPage() {
     setErrorMessage(false);
   };
 
-  const onConnect = (e: any) => {
+  const onConnect = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
 
     // checks whether the text fields are filled in
