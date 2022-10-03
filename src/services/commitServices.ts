@@ -1,13 +1,15 @@
+import Commit from "../types/api/commit";
+
 // Returns the response of an api call to get the commits of a project. Iterates through all pages.
 async function getAllCommits(
   projectId: string,
   privateToken: string
-): Promise<any> {
+): Promise<Commit[]> {
   try {
-    let data: any[] = [];
+    let data: Commit[] = [];
     let response_size = 100;
     let page = 1;
-    while (response_size == 100) {
+    while (response_size === 100) {
       const response = await fetch(
         "https://gitlab.stud.idi.ntnu.no/api/v4/projects/" +
           projectId +
@@ -24,6 +26,7 @@ async function getAllCommits(
     return data;
   } catch (error) {
     console.log(error);
+    return [];
   }
 }
 
@@ -32,12 +35,12 @@ async function getCommitsByBranch(
   projectId: string,
   branchName: string,
   privateToken: string
-): Promise<any> {
+): Promise<Commit[]> {
   try {
-    let data: any[] = [];
+    let data: Commit[] = [];
     let response_size = 100;
     let page = 1;
-    while (response_size == 100) {
+    while (response_size === 100) {
       const response = await fetch(
         "https://gitlab.stud.idi.ntnu.no/api/v4/projects/" +
           projectId +
@@ -56,6 +59,7 @@ async function getCommitsByBranch(
     return data;
   } catch (error) {
     console.log(error);
+    return [];
   }
 }
 
@@ -63,12 +67,12 @@ async function getCommitsByBranch(
 async function getCommitsPerAuthor(
   projectId: string,
   privateToken: string
-): Promise<any> {
+): Promise<Map<string, number>> {
   try {
-    let data: any[] = [];
+    let data: Commit[] = [];
     let response_size = 100;
     let page = 1;
-    while (response_size == 100) {
+    while (response_size === 100) {
       const response = await fetch(
         "https://gitlab.stud.idi.ntnu.no/api/v4/projects/" +
           projectId +
@@ -77,9 +81,11 @@ async function getCommitsPerAuthor(
           "&page=" +
           page
       );
+
       const response_data = await response.json();
       response_size = response_data.length;
       data = data.concat(response_data);
+      console.log(data);
       page++;
     }
     let commitsPerAuthor = new Map<string, number>();
@@ -96,6 +102,7 @@ async function getCommitsPerAuthor(
     return commitsPerAuthor;
   } catch (error) {
     console.log(error);
+    return new Map<string, number>();
   }
 }
 

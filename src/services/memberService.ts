@@ -1,14 +1,18 @@
 // Returns list of names of all active members in a project (Members with at least one commit or created an issue).
+
+import Commit from "../types/api/commit";
+import { Issue } from '../types/api/issue';
+
 //Iterates through all pages.
 async function getActiveMembers(
   projectId: string,
   privateToken: string
-): Promise<any> {
+): Promise<string[]> {
   try {
-    let commitData: any[] = [];
+    let commitData: Commit[] = [];
     let response_size = 100;
     let page = 1;
-    while (response_size == 100) {
+    while (response_size === 100) {
       const commitResponse = await fetch(
         "https://gitlab.stud.idi.ntnu.no/api/v4/projects/" +
           projectId +
@@ -23,10 +27,10 @@ async function getActiveMembers(
       page++;
     }
 
-    let issueData: any[] = [];
+    let issueData: Issue[] = [];
     response_size = 100;
     page = 1;
-    while (response_size == 100) {
+    while (response_size === 100) {
       const issueResponse = await fetch(
         "https://gitlab.stud.idi.ntnu.no/api/v4/projects/" +
           projectId +
@@ -48,6 +52,7 @@ async function getActiveMembers(
       }
     }
     for (const issue of issueData) {
+      console.log(issue);
       if (!activeMembers.includes(issue.author.name)) {
         activeMembers.push(issue.author.name);
       }
@@ -55,6 +60,7 @@ async function getActiveMembers(
     return activeMembers;
   } catch (error) {
     console.log(error);
+    return [];
   }
 }
 
