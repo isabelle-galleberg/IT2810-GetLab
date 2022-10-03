@@ -22,8 +22,13 @@ export interface IssueCardProps {
 export interface LayoutProps {
   children: React.ReactNode;
 }
-
 export interface TextFieldProps {
   placeholder?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export interface PageProps {
+  page: number;
+  perPage: number;
+  total: number;
 }
