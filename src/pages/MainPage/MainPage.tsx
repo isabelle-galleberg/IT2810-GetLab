@@ -1,25 +1,37 @@
 import { Select } from "@mantine/core";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CommitsWrapper from "../../components/Wrappers/CommitsWrapper";
 import IssuesWrapper from "../../components/Wrappers/IssuesWrapper";
 import "./MainPage.css";
 import { Pagination } from "@mantine/core";
 import Chart from "../../components/CommitsChart/CommitsChart";
 import { GitlabContext } from "../../context/GitlabContext";
+import branchService from "../../services/branchService";
+import { useNavigate } from "react-router-dom";
 
 export default function MainPage() {
   const { projectId, apiSecret } = useContext(GitlabContext);
   const [value, setValue] = useState<string | null>(null);
+  const navigate = useNavigate();
   const [pageinator, setPageinator] = useState<any>({
     page: 1,
     perPage: 10,
     total: 1,
   });
-
   function setDisplayType(value: string) {
     setValue(value);
     setPage(1);
   }
+
+  useEffect(() => {
+    // Validate credentials
+    branchService.getBranches(projectId, apiSecret).then((branches) => {
+      debugger;
+      if (!branches) {
+        navigate("/");
+      }
+    });
+  }, []);
 
   function setPage(page: number) {
     setPageinator({ ...pageinator, page });
