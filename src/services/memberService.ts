@@ -52,7 +52,6 @@ async function getActiveMembers(
       }
     }
     for (const issue of issueData) {
-      console.log(issue);
       if (!activeMembers.includes(issue.author.name)) {
         activeMembers.push(issue.author.name);
       }

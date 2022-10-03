@@ -85,7 +85,6 @@ async function getCommitsPerAuthor(
       const response_data = await response.json();
       response_size = response_data.length;
       data = data.concat(response_data);
-      console.log(data);
       page++;
     }
     let commitsPerAuthor = new Map<string, number>();

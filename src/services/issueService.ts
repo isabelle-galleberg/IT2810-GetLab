@@ -82,7 +82,6 @@ async function getLabels(
       response_size = response_data.length;
       data = data.concat(response_data);
       page++;
-      console.log(data);
     }
     let labelList: string[] = [];
     for (const label of data) {
