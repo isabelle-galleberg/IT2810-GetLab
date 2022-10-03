@@ -6,14 +6,7 @@ import Branch from "../../types/api/branch";
 import branchService from "../../services/branchService";
 import { useContext, useEffect } from "react";
 import { GitlabContext } from "../../context/GitlabContext";
-
-function CommitFilter({
-  setFilter,
-  filter,
-  setBranches,
-  branches,
-  branch,
-}: any) {
+function CommitFilter({ setFilter, filter, setBranches, branches }: any) {
   const updateBranch = (branch: string) => {
     setFilter({ ...filter, branch: branch });
   };
