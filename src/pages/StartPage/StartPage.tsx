@@ -9,8 +9,8 @@ import branchService from "../../services/branchService";
 export default function StartPage() {
   const [errorMessage, setErrorMessage] = useState(false);
 
-  const { projectId, setProjectId } = useContext(GitlabContext);
-  const { accessToken, setAccessToken } = useContext(GitlabContext);
+  const { setProjectId } = useContext(GitlabContext);
+  const { setAccessToken } = useContext(GitlabContext);
 
   const [localProjectId, setLocalProjectId] = useState<string | null>(null);
   const [localAccessToken, setLocalAccessToken] = useState<string | null>(null);
@@ -22,7 +22,7 @@ export default function StartPage() {
 
   // when changing text field, update name value and hide error message
   const changeProjectId = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setLocalProjectId(e.target.value);
+    setLocalProjectId(e.target.value.replace(/\s/g, ""));
     setErrorMessage(false);
   };
 
@@ -33,7 +33,7 @@ export default function StartPage() {
 
   // when changing text field, update api value and hide error message
   const changeAccessToken = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setLocalAccessToken(e.target.value);
+    setLocalAccessToken(e.target.value.replace(/\s/g, ""));
     setErrorMessage(false);
   };
 
