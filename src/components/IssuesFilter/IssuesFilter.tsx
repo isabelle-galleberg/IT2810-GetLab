@@ -4,14 +4,16 @@ import { MultiSelect, Select } from "@mantine/core";
 import "./IssuesFilter.css";
 import memberService from "../../services/memberService";
 import { GitlabContext } from "../../context/GitlabContext";
+import { IssueFilterProps } from '../../types/propTypes';
+
 
 export default function IssuesFilter({
   setFilterCreator,
   setFilterLabels,
-}: any) {
+}: IssueFilterProps) {
   const { projectId, accessToken } = useContext(GitlabContext);
-  const [allLabels, setAllLabels] = useState<any[]>([]);
-  const [creators, setCreators] = useState<any[]>([]);
+  const [allLabels, setAllLabels] = useState<string[]>([]);
+  const [creators, setCreators] = useState<string[]>([]);
 
   function setCreator(creator: string) {
     setFilterCreator({ ...setFilterCreator, creator });
@@ -22,12 +24,12 @@ export default function IssuesFilter({
   }
 
   useEffect(() => {
-    issueService.getLabels(projectId, accessToken).then((labels: any[]) => {
+    issueService.getLabels(projectId, accessToken).then((labels: string[]) => {
       setAllLabels(labels);
     });
     memberService
       .getActiveMembers(projectId, accessToken)
-      .then((creators: any[]) => {
+      .then((creators: string[]) => {
         setCreators(creators);
       });
   }, []);

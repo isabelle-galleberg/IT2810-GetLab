@@ -8,7 +8,7 @@ describe("<IssueCard />", () => {
         <IssueCard
           title="Make it work"
           labels={["priority: high"]}
-          issueNumber={1}
+          issueNumber={"1"}
           createdAt="10.08.2022"
           author="me"
         />

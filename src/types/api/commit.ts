@@ -4,6 +4,6 @@ export default interface Commit {
   title: string;
   author_name: string;
   author_email: string;
-  commited_date: string;
+  committed_date: string;
   message: string;
 }

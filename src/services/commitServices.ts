@@ -1,10 +1,12 @@
+import Commit from "../types/api/commit";
+
 // Returns the response of an api call to get the commits of a project. Iterates through all pages.
 async function getAllCommits(
   projectId: string,
   privateToken: string
-): Promise<any> {
+): Promise<Commit[]> {
   try {
-    let data: any[] = [];
+    let data: Commit[] = [];
     let response_size = 100;
     let page = 1;
     while (response_size === 100) {
@@ -24,6 +26,7 @@ async function getAllCommits(
     return data;
   } catch (error) {
     console.log(error);
+    return [];
   }
 }
 
@@ -33,8 +36,8 @@ async function getCommitsByBranch(
   branchName: string,
   privateToken: string,
   dateRange: any
-): Promise<any> {
-  let data = [] as any[];
+): Promise<Commit[]> {
+  let data: Commit[] = [];
   try {
     let url =
       "https://gitlab.stud.idi.ntnu.no/api/v4/projects/" +
@@ -60,6 +63,7 @@ async function getCommitsByBranch(
     return data;
   } catch (error) {
     console.log(error);
+    return [];
   }
 }
 

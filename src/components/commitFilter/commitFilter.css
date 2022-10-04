@@ -14,7 +14,16 @@
   min-width: 200px;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 620px) {
+
+  .mantine-1f8v7sc,
+  .mantine-h00ck1,
+  .mantine-4kwz18 {
+    margin: -4px;
+  }
+}
+
+@media (max-width: 500px) {
   .filter {
     display: flex;
     flex-direction: column;
