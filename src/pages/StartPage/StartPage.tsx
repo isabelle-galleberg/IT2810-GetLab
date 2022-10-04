@@ -50,7 +50,7 @@ export default function StartPage() {
     }
   };
 
-  function onConnect(e: any) {
+  function onConnect(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     if (localProjectId && localAccessToken) {
       localStorage.setItem("projectId", localProjectId);
