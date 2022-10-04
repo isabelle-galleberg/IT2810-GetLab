@@ -11,11 +11,11 @@ function CommitFilter({ setFilter, filter, setBranches, branches }: any) {
     setFilter({ ...filter, branch: branch });
   };
 
-  const { projectId, apiSecret } = useContext(GitlabContext);
+  const { projectId, accessToken } = useContext(GitlabContext);
 
   useEffect(() => {
     branchService
-      .getBranches(projectId, apiSecret)
+      .getBranches(projectId, accessToken)
       .then((brancheRes: Branch[]) => {
         setBranches(brancheRes);
         updateBranch(brancheRes.find((m: Branch) => m.default)?.name ?? "");

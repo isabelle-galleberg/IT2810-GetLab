@@ -13,13 +13,15 @@ export default function CommitsWrapper({ pageinator, setPageinator }: any) {
     dateTo: "",
   });
   const [branches, setBranches] = useState<any[]>([]);
-  const { apiSecret, projectId } = useContext(GitlabContext);
+  const { accessToken, projectId } = useContext(GitlabContext);
 
   useEffect(() => {
-    commitService.getAllCommits(projectId, apiSecret).then((commits: any[]) => {
-      setCommits(commits);
-      setPageinator(null, commits.length);
-    });
+    commitService
+      .getAllCommits(projectId, accessToken)
+      .then((commits: any[]) => {
+        setCommits(commits);
+        setPageinator(null, commits.length);
+      });
   }, [filter]);
 
   return (

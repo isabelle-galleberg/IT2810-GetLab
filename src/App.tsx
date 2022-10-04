@@ -6,7 +6,7 @@ import { GitlabContext, GitlabCredentials } from "./context/GitlabContext";
 import { useState } from "react";
 function App() {
   const [projectId, setProjectId] = useState<string>("");
-  const [apiSecret, setApiSecret] = useState<string>("");
+  const [accessToken, setAccessToken] = useState<string>("");
   return (
     <div className="container">
       <header>
@@ -25,8 +25,8 @@ function App() {
             {
               projectId,
               setProjectId,
-              apiSecret,
-              setApiSecret,
+              accessToken: accessToken,
+              setAccessToken: setAccessToken,
             } as GitlabCredentials
           }
         >

@@ -7,17 +7,17 @@ import { useNavigate } from "react-router-dom";
 import branchService from "../../services/branchService";
 
 export default function StartPage() {
-  // const [projectId, setProjectId] = useState<string | null>(null);
-  // const [accessToken, setAccessToken] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState(false);
+
   const { projectId, setProjectId } = useContext(GitlabContext);
-  const { apiSecret, setApiSecret } = useContext(GitlabContext);
+  const { accessToken, setAccessToken } = useContext(GitlabContext);
 
   const [localProjectId, setLocalProjectId] = useState<string | null>(null);
-  const [localApiSecret, setLocalApiSecret] = useState<string | null>(null);
+  const [localAccessToken, setLocalAccessToken] = useState<string | null>(null);
 
   const credentialsInLocalStorage =
-    localStorage.getItem("projectId") && localStorage.getItem("apiSecret");
+    localStorage.getItem("projectId") && localStorage.getItem("accessToken");
+
   const navigate = useNavigate();
 
   // when changing text field, update name value and hide error message
@@ -27,46 +27,46 @@ export default function StartPage() {
   };
 
   useEffect(() => {
-    setApiSecret("");
+    setAccessToken("");
     setProjectId("");
   }, []);
 
   // when changing text field, update api value and hide error message
-  const changeApiSecret = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setLocalApiSecret(e.target.value);
+  const changeAccessToken = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLocalAccessToken(e.target.value);
     setErrorMessage(false);
   };
 
   const connectUsingPrevCred = async (e: any) => {
     e.preventDefault();
     const projectIdLocal = localStorage.getItem("projectId");
-    const apiSecretLocal = localStorage.getItem("apiSecret");
-    if (projectIdLocal != null && apiSecretLocal != null) {
+    const accessTokenLocal = localStorage.getItem("accessToken");
+    if (projectIdLocal != null && accessTokenLocal != null) {
       setProjectId(projectIdLocal);
-      setApiSecret(apiSecretLocal);
-      connect(projectIdLocal, apiSecretLocal);
+      setAccessToken(accessTokenLocal);
+      connect(projectIdLocal, accessTokenLocal);
     }
   };
 
   function onConnect(e: any) {
     e.preventDefault();
-    if (localProjectId && localApiSecret) {
+    if (localProjectId && localAccessToken) {
       localStorage.setItem("projectId", localProjectId);
-      localStorage.setItem("apiSecret", localApiSecret);
+      localStorage.setItem("accessToken", localAccessToken);
       setProjectId(localProjectId);
-      setApiSecret(localApiSecret);
+      setAccessToken(localAccessToken);
     }
-    connect(projectId, apiSecret);
+    connect(projectId, accessToken);
   }
-  const connect = (_projectId: string, _apiSecret: string) => {
+  const connect = (_projectId: string, _accessToken: string) => {
     // checks whether the text fields are filled in
     // if not: show error message
     // else:
-    if (!_projectId || !_apiSecret) {
+    if (!_projectId || !_accessToken) {
       setErrorMessage(true);
     } else {
       // Validate credentials
-      branchService.getBranches(_projectId, _apiSecret).then((branches) => {
+      branchService.getBranches(_projectId, _accessToken).then((branches) => {
         if (branches) {
           navigate("/data");
         } else {
@@ -87,7 +87,7 @@ export default function StartPage() {
             placeholder="Project ID"
           ></TextField>
           <TextField
-            onChange={changeApiSecret}
+            onChange={changeAccessToken}
             placeholder="Access token"
           ></TextField>
 

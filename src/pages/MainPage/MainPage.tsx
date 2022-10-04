@@ -10,7 +10,7 @@ import branchService from "../../services/branchService";
 import { useNavigate } from "react-router-dom";
 
 export default function MainPage() {
-  const { projectId, apiSecret, setApiSecret, setProjectId } =
+  const { projectId, accessToken, setAccessToken, setProjectId } =
     useContext(GitlabContext);
   const [value, setValue] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -39,19 +39,19 @@ export default function MainPage() {
 
   useEffect(() => {
     // Validate credentials
-    const lsApiSecret = localStorage.getItem("apiSecret");
+    const lsAccessToken = localStorage.getItem("accessToken");
     const lsProjectId = localStorage.getItem("projectId");
 
-    if (!lsApiSecret || !lsProjectId) {
+    if (!lsAccessToken || !lsProjectId) {
       navigate("/");
       return;
     } else {
-      setApiSecret(lsApiSecret);
+      setAccessToken(lsAccessToken);
       setProjectId(lsProjectId);
     }
 
     debugger;
-    branchService.getBranches(lsProjectId, lsApiSecret).then((branches) => {
+    branchService.getBranches(lsProjectId, lsAccessToken).then((branches) => {
       if (!branches) {
         navigate("/");
       }
@@ -111,7 +111,7 @@ export default function MainPage() {
         />
       )}
       {value === "commitsChart" && (
-        <Chart projectId={projectId} token={apiSecret} />
+        <Chart projectId={projectId} token={accessToken} />
       )}
       <br />
       {(value === "commits" || value === "issues") && (

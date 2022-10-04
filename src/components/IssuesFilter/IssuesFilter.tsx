@@ -9,7 +9,7 @@ export default function IssuesFilter({
   setFilterCreator,
   setFilterLabels,
 }: any) {
-  const { projectId, apiSecret } = useContext(GitlabContext);
+  const { projectId, accessToken } = useContext(GitlabContext);
   const [allLabels, setAllLabels] = useState<any[]>([]);
   const [creators, setCreators] = useState<any[]>([]);
 
@@ -22,11 +22,11 @@ export default function IssuesFilter({
   }
 
   useEffect(() => {
-    issueService.getLabels(projectId, apiSecret).then((labels: any[]) => {
+    issueService.getLabels(projectId, accessToken).then((labels: any[]) => {
       setAllLabels(labels);
     });
     memberService
-      .getActiveMembers(projectId, apiSecret)
+      .getActiveMembers(projectId, accessToken)
       .then((creators: any[]) => {
         setCreators(creators);
       });

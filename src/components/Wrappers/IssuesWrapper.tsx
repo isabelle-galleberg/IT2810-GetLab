@@ -10,12 +10,12 @@ export default function IssuesWrapper({ pageinator }: any) {
   const [issuesByLabels, setIssuesByLabels] = useState<any[]>([]);
   const [filterCreator, setFilterCreator] = useState<any>({ creator: null });
   const [filterLabels, setFilterLabels] = useState<any>({ labels: [] });
-  const { apiSecret, projectId } = useContext(GitlabContext);
+  const { accessToken, projectId } = useContext(GitlabContext);
 
   useEffect(() => {
     setIssues([]);
     issueService
-      .getIssues(projectId, apiSecret, pageinator.perPage, pageinator.page)
+      .getIssues(projectId, accessToken, pageinator.perPage, pageinator.page)
       .then((res: any) => {
         res.data.map((data: any) => {
           if (
@@ -31,7 +31,7 @@ export default function IssuesWrapper({ pageinator }: any) {
   useEffect(() => {
     setIssuesByLabels([]);
     issueService
-      .getIssuesByLabels(projectId, filterLabels.labels, apiSecret)
+      .getIssuesByLabels(projectId, filterLabels.labels, accessToken)
       .then((res: any) => {
         res.map((data: any) => {
           if (
