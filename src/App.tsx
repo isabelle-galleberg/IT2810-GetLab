@@ -32,7 +32,7 @@ function App() {
     >
       <div className="container">
         <header>
-          <a href="/">
+          <a href="/project2">
             <img
               className="getLabLogo"
               src={require("./assets/logo.png")}
@@ -45,7 +45,7 @@ function App() {
           </div>
         </header>
         <main>
-          <BrowserRouter>
+          <BrowserRouter basename="/project2">
             <Routes>
               <Route path="/" element={<StartPage />} />
             </Routes>
