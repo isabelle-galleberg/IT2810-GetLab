@@ -44,7 +44,6 @@ async function getCommitsByBranch(
       "&per_page=100&private_token=" +
       privateToken;
     if (!isNaN(dateRange.from.getDate()) && !isNaN(dateRange.to.getDate())) {
-      debugger;
       dateRange.from.setHours(0, 0, 0, 0);
       dateRange.to.setHours(23, 59, 59, 999);
       url +=
