@@ -2,9 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import "./StartPage.css";
 import Button from "../../components/Button/Button";
 import TextField from "../../components/TextField/TextField";
-import { GitlabContext } from "../../context/GitlabContext";
 import { useNavigate } from "react-router-dom";
 import branchService from "../../services/branchService";
+import { GitlabContext } from "../../context/GitlabContext";
 
 export default function StartPage() {
   const [errorMessage, setErrorMessage] = useState(false);
@@ -52,6 +52,7 @@ export default function StartPage() {
 
   function onConnect(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
+    debugger;
     if (localProjectId && localAccessToken) {
       localStorage.setItem("projectId", localProjectId);
       localStorage.setItem("accessToken", localAccessToken);

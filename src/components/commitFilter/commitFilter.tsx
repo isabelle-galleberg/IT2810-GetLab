@@ -5,8 +5,7 @@ import Branch from "../../types/api/branch";
 import branchService from "../../services/branchService";
 import { useContext, useEffect } from "react";
 import { GitlabContext } from "../../context/GitlabContext";
-import { CommitFilterProps } from '../../types/propTypes';
-
+import { CommitFilterProps } from "../../types/propTypes";
 
 function CommitFilter({
   setFilter,
@@ -30,9 +29,11 @@ function CommitFilter({
   useEffect(() => {
     branchService
       .getBranches(projectId, accessToken)
-      .then((brancheRes: Branch[]) => {
-        setBranches(brancheRes);
-        updateBranch(brancheRes.find((m: Branch) => m.default)?.name ?? "");
+      .then((brancheRes: Branch[] | null) => {
+        if (brancheRes != null) {
+          setBranches(brancheRes);
+          updateBranch(brancheRes.find((m: Branch) => m.default)?.name ?? "");
+        }
       });
   }, []);
 

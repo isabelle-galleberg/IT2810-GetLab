@@ -4,7 +4,7 @@ import Branch from "../types/api/branch";
 async function getBranches(
   projectId: string,
   privateToken: string
-): Promise<Branch[]> {
+): Promise<Branch[] | null> {
   try {
     let data: Branch[] = [];
     let response_size = 100;
@@ -23,12 +23,12 @@ async function getBranches(
         response_size = response_data.length;
         data = data.concat(response_data);
         page++;
-      } else return [];
+      } else return null;
     }
     return data;
   } catch (error) {
     console.log(error);
-    return [];
+    return null;
   }
 }
 
