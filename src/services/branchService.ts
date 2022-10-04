@@ -7,7 +7,7 @@ async function getBranches(
     let data: any[] = [];
     let response_size = 100;
     let page = 1;
-    while (response_size == 100) {
+    while (response_size === 100) {
       const response = await fetch(
         "https://gitlab.stud.idi.ntnu.no/api/v4/projects/" +
           projectId +
@@ -16,10 +16,12 @@ async function getBranches(
           "&page=" +
           page
       );
-      const response_data = await response.json();
-      response_size = response_data.length;
-      data = data.concat(response_data);
-      page++;
+      if (response.status.toString()[0] === "2") {
+        const response_data = await response.json();
+        response_size = response_data.length;
+        data = data.concat(response_data);
+        page++;
+      } else return null;
     }
     return data;
   } catch (error) {
