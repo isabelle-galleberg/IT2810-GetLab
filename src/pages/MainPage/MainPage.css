@@ -23,3 +23,7 @@
   border: 1px solid #3a73c5;
   min-width: 200px;
 }
+
+.mantine-1ajyf09::placeholder {
+  color: white;
+}
