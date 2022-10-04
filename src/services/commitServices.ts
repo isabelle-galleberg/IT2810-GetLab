@@ -37,12 +37,20 @@ async function getCommitsByBranch(
     let data: any[] = [];
     let response_size = 100;
     let page = 1;
+    let ref_name = "";
+    const branchNameSplitted = branchName.split("/");
+    ref_name = branchNameSplitted[0];
+    if (branchNameSplitted.length > 1) {
+      for (let i = 1; i < branchNameSplitted.length; i++) {
+        ref_name += "%2F" + branchNameSplitted[i];
+      }
+    }
     while (response_size == 100) {
       const response = await fetch(
         "https://gitlab.stud.idi.ntnu.no/api/v4/projects/" +
           projectId +
           "/repository/commits?ref_name=" +
-          branchName +
+          ref_name +
           "&per_page=100&private_token=" +
           privateToken +
           "&page=" +
