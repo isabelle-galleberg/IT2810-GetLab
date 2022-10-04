@@ -1,10 +1,12 @@
+import Branch from "../types/api/branch";
+
 // Returns the response of an api call to get the branches of a project. Iterates through all pages.
 async function getBranches(
   projectId: string,
   privateToken: string
-): Promise<any> {
+): Promise<Branch[] | null> {
   try {
-    let data: any[] = [];
+    let data: Branch[] = [];
     let response_size = 100;
     let page = 1;
     while (response_size === 100) {
@@ -25,7 +27,7 @@ async function getBranches(
     }
     return data;
   } catch (error) {
-    console.log(error);
+    return null;
   }
 }
 

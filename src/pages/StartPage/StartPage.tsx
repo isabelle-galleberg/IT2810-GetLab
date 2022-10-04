@@ -2,9 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import "./StartPage.css";
 import Button from "../../components/Button/Button";
 import TextField from "../../components/TextField/TextField";
-import { GitlabContext } from "../../context/GitlabContext";
 import { useNavigate } from "react-router-dom";
 import branchService from "../../services/branchService";
+import { GitlabContext } from "../../context/GitlabContext";
 
 export default function StartPage() {
   const [errorMessage, setErrorMessage] = useState(false);
@@ -37,7 +37,9 @@ export default function StartPage() {
     setErrorMessage(false);
   };
 
-  const connectUsingPrevCred = async (e: any) => {
+  const connectUsingPrevCred = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     e.preventDefault();
     const projectIdLocal = localStorage.getItem("projectId");
     const accessTokenLocal = localStorage.getItem("accessToken");

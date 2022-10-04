@@ -13,6 +13,7 @@ import { Bar } from "react-chartjs-2";
 import commitService from "../../services/commitServices";
 import { CommitsChartProps } from "../../types/propTypes";
 import getCommitsPerAuthor from "../../services/getCommitsPerAuthor";
+import Commit from '../../types/api/commit';
 
 export default function Chart({ projectId, token }: CommitsChartProps) {
   ChartJS.register(
@@ -48,7 +49,7 @@ export default function Chart({ projectId, token }: CommitsChartProps) {
   };
 
   useEffect(() => {
-    commitService.getAllCommits(projectId, token).then((commits: any) => {
+    commitService.getAllCommits(projectId, token).then((commits: Commit[]) => {
       setContributors(Array.from(getCommitsPerAuthor(commits).keys()));
       setCommits(Array.from(getCommitsPerAuthor(commits).values()));
     });
