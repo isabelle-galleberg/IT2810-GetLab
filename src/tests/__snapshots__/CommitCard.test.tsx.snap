@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CommitCard /> should render a commit card with given values 1`] = `
+<div
+  className="commitCard"
+>
+  <div
+    className="title"
+  >
+    My first commit
+  </div>
+  <div
+    className="commitInfo"
+  >
+    <div
+      className="author"
+    >
+      me
+    </div>
+    <div
+      className="committedAt"
+    >
+      commited on 10.08.2022
+    </div>
+  </div>
+</div>
+`;
