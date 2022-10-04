@@ -20,4 +20,10 @@
     flex-direction: column;
     align-items: center;
   }
+
+  .mantine-1f8v7sc,
+  .mantine-h00ck1,
+  .mantine-4kwz18 {
+    margin: -5px;
+  }
 }
