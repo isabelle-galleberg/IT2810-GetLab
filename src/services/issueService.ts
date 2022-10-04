@@ -12,7 +12,6 @@ async function getIssues(
         "&per_page=100"
     );
     const data = await response.json();
-    debugger;
     return data;
   } catch (error) {
     console.log(error);
@@ -46,7 +45,6 @@ async function getIssuesByLabels(
       data = data.concat(response_data);
       page++;
     }
-    debugger;
     return data;
   } catch (error) {
     console.log(error);

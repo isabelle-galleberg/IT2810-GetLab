@@ -43,7 +43,6 @@ async function getCommitsByBranch(
       branchName +
       "&per_page=100&private_token=" +
       privateToken;
-    // debugger;
     if (!isNaN(dateRange.from.getDate()) && !isNaN(dateRange.to.getDate())) {
       url +=
         "&since=" +

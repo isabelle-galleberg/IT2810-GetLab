@@ -19,7 +19,6 @@ export default function CommitsWrapper() {
 
   useEffect(() => {
     setCommits([]);
-    // debugger;
     commitService
       .getCommitsByBranch(projectId, filter.branch, accessToken, {
         from: new Date(dateRange.dateFrom),

@@ -15,7 +15,6 @@ export default function IssuesWrapper({ pageinator, setPageinator }: any) {
   useEffect(() => {
     setIssues([]);
     issueService.getIssues(projectId, accessToken).then((res: any) => {
-      debugger;
       res.map((data: any) => {
         if (
           filterCreator.creator === data.author.name ||
