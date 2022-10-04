@@ -1,24 +1,19 @@
 // Returns the response of an api call to get one page of issues.
 async function getIssues(
   projectId: string,
-  privateToken: string,
-  numberOfIssues: string,
-  page: number
+  privateToken: string
 ): Promise<any> {
   try {
     const response = await fetch(
       "https://gitlab.stud.idi.ntnu.no/api/v4/projects/" +
         projectId +
-        "/issues?per_page=" +
-        numberOfIssues +
-        "&private_token=" +
+        "/issues?private_token=" +
         privateToken +
-        "&page=" +
-        page
+        "&per_page=100"
     );
     const data = await response.json();
-    const totalPages = response.headers.get("X-Total-Pages");
-    return { data, totalPages };
+    debugger;
+    return data;
   } catch (error) {
     console.log(error);
   }
@@ -34,7 +29,7 @@ async function getIssuesByLabels(
     let data: any[] = [];
     let response_size = 100;
     let page = 1;
-    while (response_size == 100) {
+    while (response_size === 100) {
       const labelString = labelList.join(",");
       const response = await fetch(
         "https://gitlab.stud.idi.ntnu.no/api/v4/projects/" +
@@ -51,6 +46,7 @@ async function getIssuesByLabels(
       data = data.concat(response_data);
       page++;
     }
+    debugger;
     return data;
   } catch (error) {
     console.log(error);

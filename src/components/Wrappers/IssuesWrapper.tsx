@@ -5,7 +5,7 @@ import IssueCard from "../IssueCard/IssueCard";
 import IssuesFilter from "../IssuesFilter/IssuesFilter";
 import "./Wrapper.css";
 
-export default function IssuesWrapper({ pageinator }: any) {
+export default function IssuesWrapper({ pageinator, setPageinator }: any) {
   const [issues, setIssues] = useState<any[]>([]);
   const [issuesByLabels, setIssuesByLabels] = useState<any[]>([]);
   const [filterCreator, setFilterCreator] = useState<any>({ creator: null });
@@ -14,18 +14,17 @@ export default function IssuesWrapper({ pageinator }: any) {
 
   useEffect(() => {
     setIssues([]);
-    issueService
-      .getIssues(projectId, accessToken, pageinator.perPage, pageinator.page)
-      .then((res: any) => {
-        res.data.map((data: any) => {
-          if (
-            filterCreator.creator === data.author.name ||
-            filterCreator.creator === null
-          ) {
-            setIssues((issues) => [...issues, data]);
-          }
-        });
+    issueService.getIssues(projectId, accessToken).then((res: any) => {
+      debugger;
+      res.map((data: any) => {
+        if (
+          filterCreator.creator === data.author.name ||
+          filterCreator.creator === null
+        ) {
+          setIssues((issues) => [...issues, data]);
+        }
       });
+    });
   }, [filterCreator, filterLabels]);
 
   useEffect(() => {
