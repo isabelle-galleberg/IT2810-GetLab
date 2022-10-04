@@ -52,7 +52,6 @@ export default function StartPage() {
 
   function onConnect(e: any) {
     e.preventDefault();
-    debugger;
     if (localProjectId && localAccessToken) {
       localStorage.setItem("projectId", localProjectId);
       localStorage.setItem("accessToken", localAccessToken);

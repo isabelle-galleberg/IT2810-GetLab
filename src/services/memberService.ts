@@ -1,7 +1,7 @@
 // Returns list of names of all active members in a project (Members with at least one commit or created an issue).
 
 import Commit from "../types/api/commit";
-import { Issue } from '../types/api/issue';
+import { Issue } from "../types/api/issue";
 
 //Iterates through all pages.
 async function getActiveMembers(
@@ -58,7 +58,6 @@ async function getActiveMembers(
     }
     return activeMembers;
   } catch (error) {
-    console.log(error);
     return [];
   }
 }
