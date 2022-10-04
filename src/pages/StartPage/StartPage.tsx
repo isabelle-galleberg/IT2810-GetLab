@@ -50,7 +50,7 @@ export default function StartPage() {
     }
   };
 
-  function onConnect(e: React.MouseEvent<HTMLButtonElement>) {
+  function onConnect(e: any) {
     e.preventDefault();
     debugger;
     if (localProjectId && localAccessToken) {
