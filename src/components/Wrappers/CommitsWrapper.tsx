@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { GitlabContext } from "../../context/GitlabContext";
 import commitService from "../../services/commitServices";
 import CommitCard from "../CommitCard/CommitCard";
 import CommitFilter from "../commitFilter/commitFilter";
@@ -12,9 +13,11 @@ export default function CommitsWrapper({ pageinator, setPageinator }: any) {
     dateTo: "",
   });
   const [branches, setBranches] = useState<any[]>([]);
+  const { accessToken, projectId } = useContext(GitlabContext);
+
   useEffect(() => {
     commitService
-      .getAllCommits("17379", "glpat-GPrQJsa8_WicT1Fo5Ve1")
+      .getAllCommits(projectId, accessToken)
       .then((commits: any[]) => {
         setCommits(commits);
         setPageinator(null, commits.length);
