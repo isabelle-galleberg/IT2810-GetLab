@@ -7,7 +7,7 @@ async function getAllCommits(
     let data: any[] = [];
     let response_size = 100;
     let page = 1;
-    while (response_size == 100) {
+    while (response_size === 100) {
       const response = await fetch(
         "https://gitlab.stud.idi.ntnu.no/api/v4/projects/" +
           projectId +
