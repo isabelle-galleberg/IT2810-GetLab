@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { GitlabContext } from '../../context/GitlabContext';
 import commitService from "../../services/commitServices";
 import CommitCard from "../CommitCard/CommitCard";
 import CommitFilter from "../commitFilter/commitFilter";
 import "./Wrapper.css";
 
 export default function CommitsWrapper({ pageinator, setPageinator }: any) {
+  const { projectId, accessToken } = useContext(GitlabContext);
   const [commits, setCommits] = useState<any[]>([]);
   const [branches, setBranches] = useState<any[]>([]);
   const [filter, setFilter] = useState<any>({
@@ -19,7 +21,7 @@ export default function CommitsWrapper({ pageinator, setPageinator }: any) {
   useEffect(() => {
     setCommits([]);
     commitService
-      .getCommitsByBranch("17379", filter.branch, "glpat-GPrQJsa8_WicT1Fo5Ve1")
+      .getCommitsByBranch(projectId, filter.branch, accessToken)
       .then((res: any) => {
         res.map((data: any) => {
           if (
@@ -37,6 +39,16 @@ export default function CommitsWrapper({ pageinator, setPageinator }: any) {
         });
       });
   }, [filter, dateRange]);
+
+  function validDate(commitDate: string, fromDate: string, toDate: string) {
+    var date = Date.parse(commitDate);
+    var from = Date.parse(fromDate);
+    var to = Date.parse(toDate);
+    if (from <= date && date <= to) {
+      return true;
+    }
+    return false;
+  }
 
   const commitsPerPage = commits.slice(
     (pageinator.page - 1) * pageinator.perPage,
