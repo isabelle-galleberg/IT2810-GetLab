@@ -31,41 +31,33 @@ async function getAllCommits(
 async function getCommitsByBranch(
   projectId: string,
   branchName: string,
-  privateToken: string
+  privateToken: string,
+  dateRange: any
 ): Promise<any> {
+  let data = [] as any[];
   try {
-    let data: any[] = [];
-    let response_size = 100;
-    let page = 1;
-    while (response_size === 100) {
-      const response = await fetch(
-        "https://gitlab.stud.idi.ntnu.no/api/v4/projects/" +
-          projectId +
-          "/repository/commits?ref_name=" +
-          branchName +
-          "&per_page=100&private_token=" +
-          privateToken +
-          "&page=" +
-          page
-      );
+    let url =
+      "https://gitlab.stud.idi.ntnu.no/api/v4/projects/" +
+      projectId +
+      "/repository/commits?ref_name=" +
+      branchName +
+      "&per_page=100&private_token=" +
+      privateToken;
+    if (!isNaN(dateRange.from.getDate()) && !isNaN(dateRange.to.getDate())) {
+      url +=
+        "&since=" +
+        dateRange.from.toISOString() +
+        "&until=" +
+        dateRange.to.toISOString();
+    }
+    let nextPage = "1" as string | null;
+    while (nextPage) {
+      const response = await fetch(url + "&page=" + nextPage);
       const response_data = await response.json();
-      response_size = response_data.length;
       data = data.concat(response_data);
-      page++;
+      nextPage = response.headers.get("x-next-page");
     }
-    if (branchName === "main") {
-      return data;
-    } else {
-      let mainCommits = await getCommitsByBranch(
-        projectId,
-        "main",
-        privateToken
-      );
-      let filteredCommits = data.filter(
-        (commit) => !mainCommits.some((c: { id: any }) => c.id === commit.id)
-      );
-      return filteredCommits;
-    }
+    return data;
   } catch (error) {
     console.log(error);
   }
