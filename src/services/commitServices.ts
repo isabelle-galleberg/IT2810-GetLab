@@ -47,12 +47,13 @@ async function getCommitsByBranch(
       "&per_page=100&private_token=" +
       privateToken;
     if (!isNaN(dateRange.from.getDate()) && !isNaN(dateRange.to.getDate())) {
-      let dateFrom = new Date();
-      dateFrom.setDate(dateRange.from.getDate() - 1);
-      let dateTo = new Date();
-      dateTo.setDate(dateRange.to.getDate() + 1);
+      dateRange.from.setHours(0, 0, 0, 0);
+      dateRange.to.setHours(23, 59, 59, 999);
       url +=
-        "&since=" + dateFrom.toISOString() + "&until=" + dateTo.toISOString();
+        "&since=" +
+        dateRange.from.toISOString() +
+        "&until=" +
+        dateRange.to.toISOString();
     }
     let nextPage = "1" as string | null;
     while (nextPage) {
