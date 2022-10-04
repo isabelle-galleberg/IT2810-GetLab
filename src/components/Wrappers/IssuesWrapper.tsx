@@ -5,7 +5,7 @@ import IssueCard from "../IssueCard/IssueCard";
 import IssuesFilter from "../IssuesFilter/IssuesFilter";
 import "./Wrapper.css";
 
-export default function IssuesWrapper({ pageinator, setPageinator }: any) {
+export default function IssuesWrapper() {
   const [issues, setIssues] = useState<any[]>([]);
   const [issuesByLabels, setIssuesByLabels] = useState<any[]>([]);
   const [filterCreator, setFilterCreator] = useState<any>({ creator: null });
