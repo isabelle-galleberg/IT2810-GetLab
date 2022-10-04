@@ -43,8 +43,15 @@ TODO: CONTEXT API
 We have used the React component library [Mantine](https://mantine.dev) to create some of the components for the applicatoin, such as the pagination, datepicker and dropdown menus. 
 
 ### Fetching GitLab data
-Data from the GitLab API is fetched with AJAX (Asynchronous JavaScript). 
-TODO: DESCRIBE API REQUESTS
+Data from the GitLab API is fetched with AJAX (Asynchronous JavaScript). The API requests fetch data for branches, commits, issues and members in the GitLab project with following methods: 
+- `getBranches` returns all branches for the given project
+- `getAllCommits` returns all commits for the given project
+- `getCommitsByBranch` returns all commits for a given branch in the project
+- `getIssues` returns all issues for the given project
+- `getIssuesByLabel` returns the issues with a set of given labels
+- `getLabels` returns a list of all labels for the given project
+- `getActiveMembers` returns a list of all project members that have at least one commit or have created one issue
+
 
 ### HTML Web Storage
 Session storage is used to store information about a user's choice from the dropdown menu, so that the user stays on that page if the page is refreshed, or if the user navigates to another page and then back to the main page.
