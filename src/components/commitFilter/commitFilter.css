@@ -3,18 +3,27 @@
   align-items: center;
   gap: 5px;
 }
-/* creator */
+
+/* branch */
 .mantine-qew57g {
   min-width: 200px;
 }
-/* labels */
+
+/* date */
 .mantine-1klne3t {
   min-width: 200px;
 }
+
 @media (max-width: 450px) {
   .filter {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  .mantine-1f8v7sc,
+  .mantine-h00ck1,
+  .mantine-4kwz18 {
+    margin: -5px;
   }
 }
