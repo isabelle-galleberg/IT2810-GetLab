@@ -10,7 +10,7 @@ GetLab is a web application that presents information about a GitLab repository.
 ### Get GitLab access token
 
 - Go into your project in GitLab
-- Go to "Settings" --> "Access Tokens"
+- Go to "Settings" -> "Access Tokens"
 - Choose a name, expiry-date and scopes
 - Click "Create project access token"
 
@@ -35,17 +35,17 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 GetLab presents GitLab data for issues and commits for the chosen project. For commits, the user parametizing consists of filtering commits based on the author and a chosen time frame. There is also implemented a chart that displays how many commits each member has contributed to the `main` branch in the project. The chart is created with the vertical bar chart from [react-chartjs-2](https://react-chartjs-2.js.org/examples/vertical-bar-chart/). The chart displays bars based on email, such that group members that have syncronized GitLab to GitHub may appear with two separate bars.
 
-For issues, the user can filter based on selected labels and author. For a while we had pagination, but we had some problems with it so we decided to remove it. One of the problems we met was that GitLab didn't have a endpoint to get how many commit pages / items there was in total, so therefor no way to calculate how many pages it should be. The first solution was to just get all commits, and then calculate the amount of pages. But because we then already are fetching all commits, we will not save any data trafic on using pagination. That is why we dropped it.
+For issues, the user can filter based on selected labels and author. For a while we had pagination, but we had some problems with it so we decided to remove it. One of the problems was that GitLab didn't have a endpoint to get how many commit pages / items there were in total, so therefore no way to calculate how many pages it should be. The first solution was to just get all commits, and then calculate the amount of pages. But because we then already are fetching all commits, we will not save any data trafic on using pagination. That is why we dropped it.
 
 ### React with TypeScript
 
 The application is implemented in React with TypeScript. All components are React functional components, except for Button.tsx which is a class component. We have used the formatting tool Prettier to ensure a common coding style in the project.
 
+We have used the React component library [Mantine](https://mantine.dev) to create some of the components for the application, such as the datepicker and dropdown menus.
+
 ### Context API
 
 The context API is used to store the projectId and accessToken after the user connects. This helps us avoid prop-drilling. All components / pages can easly access to context and read the credentials.
-
-We have used the React component library [Mantine](https://mantine.dev) to create some of the components for the applicatoin, such as the pagination, datepicker and dropdown menus.
 
 ### Fetching GitLab data
 
