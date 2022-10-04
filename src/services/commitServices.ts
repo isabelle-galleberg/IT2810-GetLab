@@ -7,7 +7,7 @@ async function getAllCommits(
     let data: any[] = [];
     let response_size = 100;
     let page = 1;
-    while (response_size == 100) {
+    while (response_size === 100) {
       const response = await fetch(
         "https://gitlab.stud.idi.ntnu.no/api/v4/projects/" +
           projectId +
@@ -37,7 +37,7 @@ async function getCommitsByBranch(
     let data: any[] = [];
     let response_size = 100;
     let page = 1;
-    while (response_size == 100) {
+    while (response_size === 100) {
       const response = await fetch(
         "https://gitlab.stud.idi.ntnu.no/api/v4/projects/" +
           projectId +
@@ -53,7 +53,19 @@ async function getCommitsByBranch(
       data = data.concat(response_data);
       page++;
     }
-    return data;
+    if (branchName === "main") {
+      return data;
+    } else {
+      let mainCommits = await getCommitsByBranch(
+        projectId,
+        "main",
+        privateToken
+      );
+      let filteredCommits = data.filter(
+        (commit) => !mainCommits.some((c: { id: any }) => c.id === commit.id)
+      );
+      return filteredCommits;
+    }
   } catch (error) {
     console.log(error);
   }
@@ -68,7 +80,7 @@ async function getCommitsPerAuthor(
     let data: any[] = [];
     let response_size = 100;
     let page = 1;
-    while (response_size == 100) {
+    while (response_size === 100) {
       const response = await fetch(
         "https://gitlab.stud.idi.ntnu.no/api/v4/projects/" +
           projectId +
