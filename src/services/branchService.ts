@@ -18,10 +18,12 @@ async function getBranches(
           "&page=" +
           page
       );
-      const response_data = await response.json();
-      response_size = response_data.length;
-      data = data.concat(response_data);
-      page++;
+      if (response.status.toString()[0] === "2") {
+        const response_data = await response.json();
+        response_size = response_data.length;
+        data = data.concat(response_data);
+        page++;
+      } else return null;
     }
     return data;
   } catch (error) {

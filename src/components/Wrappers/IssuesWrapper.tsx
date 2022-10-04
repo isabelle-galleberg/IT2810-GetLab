@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { GitlabContext } from "../../context/GitlabContext";
 import issueService from "../../services/issueService";
 import { Issue } from "../../types/api/issue";
 import IssueCard from "../IssueCard/IssueCard";
@@ -10,16 +11,12 @@ export default function IssuesWrapper({ pageinator }: any) {
   const [issuesByLabels, setIssuesByLabels] = useState<Issue[]>([]);
   const [filterCreator, setFilterCreator] = useState<any>({ creator: null });
   const [filterLabels, setFilterLabels] = useState<any>({ labels: [] });
+  const { accessToken, projectId } = useContext(GitlabContext);
 
   useEffect(() => {
     setIssues([]);
     issueService
-      .getIssues(
-        "17379",
-        "glpat-GPrQJsa8_WicT1Fo5Ve1",
-        pageinator.perPage,
-        pageinator.page
-      )
+      .getIssues(projectId, accessToken, pageinator.perPage, pageinator.page)
       .then((res: { data: Issue[] }) => {
         res.data.map((data: Issue) => {
           if (
@@ -35,11 +32,7 @@ export default function IssuesWrapper({ pageinator }: any) {
   useEffect(() => {
     setIssuesByLabels([]);
     issueService
-      .getIssuesByLabels(
-        "17379",
-        filterLabels.labels,
-        "glpat-GPrQJsa8_WicT1Fo5Ve1"
-      )
+      .getIssuesByLabels(projectId, filterLabels.labels, accessToken)
       .then((res: Issue[]) => {
         res.map((data: Issue) => {
           if (
