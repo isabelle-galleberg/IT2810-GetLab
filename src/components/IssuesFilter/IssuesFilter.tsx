@@ -4,11 +4,13 @@ import { MultiSelect, Select } from "@mantine/core";
 import "./IssuesFilter.css";
 import memberService from "../../services/memberService";
 import { GitlabContext } from "../../context/GitlabContext";
+import { IssueFilterProps } from '../../types/propTypes';
+
 
 export default function IssuesFilter({
   setFilterCreator,
   setFilterLabels,
-}: any) {
+}: IssueFilterProps) {
   const { projectId, accessToken } = useContext(GitlabContext);
   const [allLabels, setAllLabels] = useState<string[]>([]);
   const [creators, setCreators] = useState<string[]>([]);

@@ -9,8 +9,12 @@ import "./Wrapper.css";
 export default function IssuesWrapper() {
   const [issues, setIssues] = useState<Issue[]>([]);
   const [issuesByLabels, setIssuesByLabels] = useState<Issue[]>([]);
-  const [filterCreator, setFilterCreator] = useState<any>({ creator: null });
-  const [filterLabels, setFilterLabels] = useState<any>({ labels: [] });
+  const [filterCreator, setFilterCreator] = useState<{
+    creator: string | null;
+  }>({
+    creator: null,
+  });
+  const [filterLabels, setFilterLabels] = useState<{labels: string[]}>({ labels: [] });
   const { accessToken, projectId } = useContext(GitlabContext);
 
   useEffect(() => {
@@ -47,9 +51,7 @@ export default function IssuesWrapper() {
     <div>
       <div className="issuesFilter">
         <IssuesFilter
-          filterLabels={filterLabels}
           setFilterLabels={setFilterLabels}
-          filterCreator={filterCreator}
           setFilterCreator={setFilterCreator}
         ></IssuesFilter>
       </div>

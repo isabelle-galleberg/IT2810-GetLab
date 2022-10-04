@@ -3,6 +3,7 @@ import { GitlabContext } from "../../context/GitlabContext";
 import commitService from "../../services/commitServices";
 import Branch from "../../types/api/branch";
 import Commit from "../../types/api/commit";
+import { DateRangeProps } from '../../types/propTypes';
 import CommitCard from "../CommitCard/CommitCard";
 import CommitFilter from "../commitFilter/commitFilter";
 import "./Wrapper.css";
@@ -11,10 +12,10 @@ export default function CommitsWrapper() {
   const { projectId, accessToken } = useContext(GitlabContext);
   const [commits, setCommits] = useState<Commit[]>([]);
   const [branches, setBranches] = useState<Branch[]>([]);
-  const [filter, setFilter] = useState<any>({
+  const [filter, setFilter] = useState<{ branch: string }>({
     branch: "",
   });
-  const [dateRange, setDateRange] = useState<any>({
+  const [dateRange, setDateRange] = useState<DateRangeProps>({
     dateFrom: "",
     dateTo: "",
   });
@@ -39,7 +40,6 @@ export default function CommitsWrapper() {
           setBranches={setBranches}
           filter={filter}
           setFilter={setFilter}
-          dateRange={dateRange}
           setDateRange={setDateRange}
         ></CommitFilter>
       </div>
