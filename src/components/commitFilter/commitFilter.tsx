@@ -60,11 +60,13 @@ function CommitFilter({
         searchable
         onChange={updateBranch}
         value={filter.branch}
+        dropdownPosition="bottom"
       />
       <DateRangePicker
         label="Filter by date"
         placeholder="Seeing all commits"
         inputFormat="YYYY.MM.DD"
+        dropdownPosition="bottom-start"
         onChange={updateDate}
       />
     </div>
