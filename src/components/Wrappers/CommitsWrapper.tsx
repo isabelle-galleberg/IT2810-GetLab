@@ -30,7 +30,7 @@ export default function CommitsWrapper({ pageinator, setPageinator }: any) {
               dateRange.dateFrom,
               dateRange.dateTo
             ) ||
-            dateRange.dateFrom === ""
+            dateRange.dateFrom === "" || dateRange.dateForm === undefined
           ) {
             count = count + 1;
             setCommits((commits) => [...commits, data]);
