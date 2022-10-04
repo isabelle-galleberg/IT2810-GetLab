@@ -1,5 +1,3 @@
-//Inspired by https://react-chartjs-2.js.org/examples/vertical-bar-chart/
-
 import { useEffect, useState } from "react";
 import "./CommitsChart.css";
 import {
@@ -14,6 +12,7 @@ import {
 import { Bar } from "react-chartjs-2";
 import commitService from "../../services/commitServices";
 import { CommitsChartProps } from "../../types/propTypes";
+import getCommitsPerAuthor from "../../services/getCommitsPerAuthor";
 
 export default function Chart({ projectId, token }: CommitsChartProps) {
   ChartJS.register(
@@ -49,12 +48,10 @@ export default function Chart({ projectId, token }: CommitsChartProps) {
   };
 
   useEffect(() => {
-    commitService
-      .getCommitsPerAuthor(projectId, token)
-      .then((commitsPerAuthor: Map<string, number>) => {
-        setContributors(Array.from(commitsPerAuthor.keys()));
-        setCommits(Array.from(commitsPerAuthor.values()));
-      });
+    commitService.getAllCommits(projectId, token).then((commits: any) => {
+      setContributors(Array.from(getCommitsPerAuthor(commits).keys()));
+      setCommits(Array.from(getCommitsPerAuthor(commits).values()));
+    });
   }, []);
 
   return <Bar data={data} options={options} className="commitsChart" />;

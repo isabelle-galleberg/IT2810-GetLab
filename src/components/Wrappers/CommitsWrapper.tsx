@@ -30,7 +30,7 @@ export default function CommitsWrapper({ pageinator, setPageinator }: any) {
               dateRange.dateFrom,
               dateRange.dateTo
             ) ||
-            dateRange.dateFrom === ""
+            dateRange.dateFrom === "" || dateRange.dateForm === NaN
           ) {
             count = count + 1;
             setCommits((commits) => [...commits, data]);
@@ -82,4 +82,18 @@ export default function CommitsWrapper({ pageinator, setPageinator }: any) {
       </div>
     </div>
   );
+}
+
+export function validDate(
+  commitDate: string,
+  fromDate: string,
+  toDate: string
+) {
+  var date = Date.parse(commitDate);
+  var from = Date.parse(fromDate);
+  var to = Date.parse(toDate);
+  if (from <= date && date <= to) {
+    return true;
+  }
+  return false;
 }
