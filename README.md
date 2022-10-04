@@ -20,7 +20,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 In the project directory, you can run:
 
 - `npm start` to install dependencies and run the project in development mode
-- `npm test` to run the test runner interactively
+- `npm test` to install dependencies run the test runner interactively
 - `npm run build` to build the app for production to the `build` folder
 - `npx prettier --write .` to run prettier formatting checks
 
@@ -29,7 +29,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 ## ☑️Requirements
 
 ### Presenting GitLab data
-GetLab presents GitLab data for issues and commits for the chosen project. For commits, the user parametizing consists of filtering commits based on the author and a chosen time frame. There is also implemented a chart that displays how many commits each member has contributed to the project. The chart is created with the vertical bar chart from [react-chartjs-2](https://react-chartjs-2.js.org/examples/vertical-bar-chart/). The chart displays bars based on email, such that group members that have syncronized GitLab to GitHub may appear with two separate bars. 
+GetLab presents GitLab data for issues and commits for the chosen project. For commits, the user parametizing consists of filtering commits based on the author and a chosen time frame. There is also implemented a chart that displays how many commits each member has contributed to the `main` branch in the project. The chart is created with the vertical bar chart from [react-chartjs-2](https://react-chartjs-2.js.org/examples/vertical-bar-chart/). The chart displays bars based on email, such that group members that have syncronized GitLab to GitHub may appear with two separate bars.
 
 For issues, the user can filter based on selected labels and author. The data is paginated, such that the user only can view 5 issues or 10 commits at a time. 
 TODO: CHANGE INFO ACCORDING TO NEW PAGINATION
