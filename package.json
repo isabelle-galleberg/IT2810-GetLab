@@ -28,7 +28,7 @@
   "scripts": {
     "start": "npm install && react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "npm install && react-scripts test",
     "eject": "react-scripts eject",
     "format": "npx prettier --write ."
   },
