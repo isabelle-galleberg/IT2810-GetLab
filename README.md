@@ -114,4 +114,8 @@ References:
 
 ## Appendix
 ### Screen recodings UI testing
+#### Computer
+![pc](/uploads/1887223fff0ab0d3cd95c52aa296f94c/pc.mov)
 TODO: vidoes for testing when UI is finished. 
+
+
