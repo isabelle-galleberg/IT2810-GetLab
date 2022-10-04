@@ -56,9 +56,9 @@ export default function StartPage() {
       setProjectId(localProjectId);
       setAccessToken(localAccessToken);
     }
-    connect(projectId, accessToken);
+    connect(localProjectId, localAccessToken);
   }
-  const connect = (_projectId: string, _accessToken: string) => {
+  const connect = (_projectId: string | null, _accessToken: string | null) => {
     // checks whether the text fields are filled in
     // if not: show error message
     // else:

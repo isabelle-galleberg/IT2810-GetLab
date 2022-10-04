@@ -50,7 +50,6 @@ export default function MainPage() {
       setProjectId(lsProjectId);
     }
 
-    debugger;
     branchService.getBranches(lsProjectId, lsAccessToken).then((branches) => {
       if (!branches) {
         navigate("/");
