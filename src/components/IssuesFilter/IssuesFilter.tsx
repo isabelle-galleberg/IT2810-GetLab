@@ -41,6 +41,7 @@ export default function IssuesFilter({
         clearButtonLabel="Clear selection"
         clearable
         onChange={setLabels}
+        dropdownPosition="bottom"
       />
       <Select
         label="Filter by creator"
@@ -49,6 +50,7 @@ export default function IssuesFilter({
         clearable
         placeholder="All creators"
         onChange={setCreator}
+        dropdownPosition="bottom"
       />
     </div>
   );
