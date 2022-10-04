@@ -6,8 +6,8 @@ import IssueCard from "../IssueCard/IssueCard";
 import IssuesFilter from "../IssuesFilter/IssuesFilter";
 import "./Wrapper.css";
 
-export default function IssuesWrapper({ pageinator }: any) {
-  const [issues, setIssues] = useState<Issue[]>([]);
+export default function IssuesWrapper() {
+  const [issues, setIssues] = useState<any[]>([]);
   const [issuesByLabels, setIssuesByLabels] = useState<Issue[]>([]);
   const [filterCreator, setFilterCreator] = useState<any>({ creator: null });
   const [filterLabels, setFilterLabels] = useState<any>({ labels: [] });
@@ -15,18 +15,16 @@ export default function IssuesWrapper({ pageinator }: any) {
 
   useEffect(() => {
     setIssues([]);
-    issueService
-      .getIssues(projectId, accessToken, pageinator.perPage, pageinator.page)
-      .then((res: { data: Issue[] }) => {
-        res.data.map((data: Issue) => {
-          if (
-            filterCreator.creator === data.author.name ||
-            filterCreator.creator === null
-          ) {
-            setIssues((issues) => [...issues, data]);
-          }
-        });
+    issueService.getIssues(projectId, accessToken).then((res: Issue[]) => {
+      res.map((data: Issue) => {
+        if (
+          filterCreator.creator === data.author.name ||
+          filterCreator.creator === null
+        ) {
+          setIssues((issues) => [...issues, data]);
+        }
       });
+    });
   }, [filterCreator, filterLabels]);
 
   useEffect(() => {

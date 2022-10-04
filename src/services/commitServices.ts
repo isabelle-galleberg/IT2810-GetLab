@@ -34,71 +34,33 @@ async function getAllCommits(
 async function getCommitsByBranch(
   projectId: string,
   branchName: string,
-  privateToken: string
-): Promise<Commit[]> {
+  privateToken: string,
+  dateRange: any
+): Promise<any> {
+  let data = [] as any[];
   try {
-    let data: Commit[] = [];
-    let response_size = 100;
-    let page = 1;
-    while (response_size === 100) {
-      const response = await fetch(
-        "https://gitlab.stud.idi.ntnu.no/api/v4/projects/" +
-          projectId +
-          "/repository/commits?ref_name=" +
-          branchName +
-          "&per_page=100&private_token=" +
-          privateToken +
-          "&page=" +
-          page
-      );
+    let url =
+      "https://gitlab.stud.idi.ntnu.no/api/v4/projects/" +
+      projectId +
+      "/repository/commits?ref_name=" +
+      branchName +
+      "&per_page=100&private_token=" +
+      privateToken;
+    if (!isNaN(dateRange.from.getDate()) && !isNaN(dateRange.to.getDate())) {
+      url +=
+        "&since=" +
+        dateRange.from.toISOString() +
+        "&until=" +
+        dateRange.to.toISOString();
+    }
+    let nextPage = "1" as string | null;
+    while (nextPage) {
+      const response = await fetch(url + "&page=" + nextPage);
       const response_data = await response.json();
-      response_size = response_data.length;
       data = data.concat(response_data);
-      page++;
+      nextPage = response.headers.get("x-next-page");
     }
     return data;
-  } catch (error) {
-    console.log(error);
-    return [];
-  }
-}
-
-// Returns a map of how many commits each user has made. Iterates through all pages.
-async function getCommitsPerAuthor(
-  projectId: string,
-  privateToken: string
-): Promise<Map<string, number>> {
-  try {
-    let data: Commit[] = [];
-    let response_size = 100;
-    let page = 1;
-    while (response_size === 100) {
-      const response = await fetch(
-        "https://gitlab.stud.idi.ntnu.no/api/v4/projects/" +
-          projectId +
-          "/repository/commits?ref_name=main&per_page=100&private_token=" +
-          privateToken +
-          "&page=" +
-          page
-      );
-
-      const response_data = await response.json();
-      response_size = response_data.length;
-      data = data.concat(response_data);
-      page++;
-    }
-    let commitsPerAuthor = new Map<string, number>();
-    for (const commit of data) {
-      if (commitsPerAuthor.has(commit.author_email)) {
-        commitsPerAuthor.set(
-          commit.author_email,
-          commitsPerAuthor.get(commit.author_email)! + 1
-        );
-      } else {
-        commitsPerAuthor.set(commit.author_email, 1);
-      }
-    }
-    return commitsPerAuthor;
   } catch (error) {
     console.log(error);
     return new Map<string, number>();
@@ -108,7 +70,6 @@ async function getCommitsPerAuthor(
 const commitService = {
   getAllCommits,
   getCommitsByBranch,
-  getCommitsPerAuthor,
 };
 
 export default commitService;

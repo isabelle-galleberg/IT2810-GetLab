@@ -3,24 +3,18 @@ import { Issue } from "../types/api/issue";
 // Returns the response of an api call to get one page of issues.
 async function getIssues(
   projectId: string,
-  privateToken: string,
-  numberOfIssues: string,
-  page: number
+  privateToken: string
 ): Promise<any> {
   try {
     const response = await fetch(
       "https://gitlab.stud.idi.ntnu.no/api/v4/projects/" +
         projectId +
-        "/issues?per_page=" +
-        numberOfIssues +
-        "&private_token=" +
+        "/issues?private_token=" +
         privateToken +
-        "&page=" +
-        page
+        "&per_page=100"
     );
     const data = await response.json();
-    const totalPages = response.headers.get("X-Total-Pages");
-    return { data, totalPages };
+    return data;
   } catch (error) {
     console.log(error);
   }
