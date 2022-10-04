@@ -47,7 +47,9 @@ Data from the GitLab API is fetched with AJAX (Asynchronous JavaScript).
 TODO: DESCRIBE API REQUESTS
 
 ### HTML Web Storage
-TODO: LOCALSTORAGE AND SESSION STORAGE
+Session storage is used to store information about a user's choice from the dropdown menu, so that the user stays on that page if the page is refreshed, or if the user navigates to another page and then back to the main page.
+
+TODO: LOCALSTORAGE
 
 ### UI and responsiveness
 For screens smaller than 500px in width, the website will decrease the font-size and size of GetLab logo. This is implemented using media-queries. We have used vw (view width) for the commit/issue cards and chart to make the component scale according to screen size. If the labels of an issue card are wider than the card itself, the labels can be scrolled horizontally. 
