@@ -36,8 +36,8 @@ async function getCommitsByBranch(
   branchName: string,
   privateToken: string,
   dateRange: any
-): Promise<any> {
-  let data = [] as any[];
+): Promise<Commit[]> {
+  let data: Commit[] = [];
   try {
     let url =
       "https://gitlab.stud.idi.ntnu.no/api/v4/projects/" +
@@ -63,7 +63,7 @@ async function getCommitsByBranch(
     return data;
   } catch (error) {
     console.log(error);
-    return new Map<string, number>();
+    return [];
   }
 }
 

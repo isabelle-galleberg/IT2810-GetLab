@@ -7,7 +7,6 @@ import Chart from "../../components/CommitsChart/CommitsChart";
 import { GitlabContext } from "../../context/GitlabContext";
 import branchService from "../../services/branchService";
 import { useNavigate } from "react-router-dom";
-import { PaginatorProps } from "../../types/propTypes";
 
 export default function MainPage() {
   const { projectId, accessToken, setAccessToken, setProjectId } =

@@ -3,12 +3,60 @@ import getCommitsPerAuthor from "../services/getCommitsPerAuthor";
 describe("getCommitsPerAuthor", () => {
   test("should return the number of commits per author", () => {
     const input = [
-      { author_email: "user1@gmail.com" },
-      { author_email: "user1@gmail.com" },
-      { author_email: "user2@stud.ntnu.no" },
-      { author_email: "user3@ntnui.no" },
-      { author_email: "user3@ntnui.no" },
-      { author_email: "user3@ntnui.no" },
+      {
+        author_email: "user1@gmail.com",
+        id: "",
+        short_id: "",
+        title: "",
+        author_name: "",
+        committed_date: "",
+        message: "",
+      },
+      {
+        author_email: "user1@gmail.com",
+        id: "",
+        short_id: "",
+        title: "",
+        author_name: "",
+        committed_date: "",
+        message: "",
+      },
+      {
+        author_email: "user2@stud.ntnu.no",
+        id: "",
+        short_id: "",
+        title: "",
+        author_name: "",
+        committed_date: "",
+        message: "",
+      },
+      {
+        author_email: "user3@ntnui.no",
+        id: "",
+        short_id: "",
+        title: "",
+        author_name: "",
+        committed_date: "",
+        message: "",
+      },
+      {
+        author_email: "user3@ntnui.no",
+        id: "",
+        short_id: "",
+        title: "",
+        author_name: "",
+        committed_date: "",
+        message: "",
+      },
+      {
+        author_email: "user3@ntnui.no",
+        id: "",
+        short_id: "",
+        title: "",
+        author_name: "",
+        committed_date: "",
+        message: "",
+      },
     ];
 
     const output = new Map<string, number>();

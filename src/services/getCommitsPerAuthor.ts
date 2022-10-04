@@ -1,5 +1,7 @@
+import Commit from "../types/api/commit";
+
 // Returns a map of how many commits each user has made. Iterates through all pages.
-const getCommitsPerAuthor = (commits: any[]): Map<string, number> => {
+const getCommitsPerAuthor = (commits: Commit[]): Map<string, number> => {
   let commitsPerAuthor = new Map<string, number>();
 
   for (const commit of commits) {

@@ -7,7 +7,7 @@ import IssuesFilter from "../IssuesFilter/IssuesFilter";
 import "./Wrapper.css";
 
 export default function IssuesWrapper() {
-  const [issues, setIssues] = useState<any[]>([]);
+  const [issues, setIssues] = useState<Issue[]>([]);
   const [issuesByLabels, setIssuesByLabels] = useState<Issue[]>([]);
   const [filterCreator, setFilterCreator] = useState<any>({ creator: null });
   const [filterLabels, setFilterLabels] = useState<any>({ labels: [] });

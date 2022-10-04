@@ -4,7 +4,7 @@ import { Issue } from "../types/api/issue";
 async function getIssues(
   projectId: string,
   privateToken: string
-): Promise<any> {
+): Promise<Issue[]> {
   try {
     const response = await fetch(
       "https://gitlab.stud.idi.ntnu.no/api/v4/projects/" +
@@ -17,6 +17,7 @@ async function getIssues(
     return data;
   } catch (error) {
     console.log(error);
+    return [];
   }
 }
 
