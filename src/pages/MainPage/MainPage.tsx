@@ -90,6 +90,7 @@ export default function MainPage() {
     <div className="mainPage">
       <Select
         className="select"
+        label="What would you like to see?"
         placeholder={getLabelOfStoredValue()}
         onChange={setDisplayType}
         data={[
