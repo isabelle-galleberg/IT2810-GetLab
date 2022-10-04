@@ -124,11 +124,11 @@ References:
 ### Screen recodings UI testing
 
 #### Computer
-![computer](vlc_imcqTPPC9s.gif)
+![computer_format.gif](./src/assets/computer_format.gif)
 
 #### Iphone vertical
-![iPhone-vertical](/uploads/18284410be138e322dc1feb557ca4080/iPhone-vertical.mov)
+![iphone_vertical_format.gif](./src/assets/iphone_vertical_format.gif)
 
 #### Iphone horizontal
-![computer](/uploads/224990d7262e8c3477e02aa433809947/computer.mov)
+![iphone_horizontal_format.gif](./src/assets/iphone_horizontal_format.gif)
 
