@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<IssueCard /> should render an issue card with given values 1`] = `
+<div
+  className="issueCard"
+>
+  <div
+    className="issueTitle"
+  >
+    Make it work
+  </div>
+  <div
+    className="labels"
+  >
+    <div
+      className="label"
+    >
+      priority: high
+    </div>
+  </div>
+  <div
+    className="issueInfo"
+  >
+    <div
+      className="issueNumber"
+    >
+      #1
+    </div>
+    <div
+      className="createdAt"
+    >
+      created 10.08.2022 by
+    </div>
+    <div
+      className="author"
+    >
+      me
+    </div>
+  </div>
+</div>
+`;

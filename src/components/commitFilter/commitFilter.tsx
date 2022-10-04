@@ -3,15 +3,17 @@ import { Select } from "@mantine/core";
 import { DateRangePicker, DateRangePickerValue } from "@mantine/dates";
 import Branch from "../../types/api/branch";
 import branchService from "../../services/branchService";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { GitlabContext } from "../../context/GitlabContext";
 
 function CommitFilter({
   setFilter,
   filter,
   setBranches,
   branches,
-  setDateRange
+  setDateRange,
 }: any) {
+  const { projectId, accessToken } = useContext(GitlabContext);
 
   const updateBranch = (branch: string) => {
     setFilter({ ...filter, branch: branch });
@@ -21,11 +23,11 @@ function CommitFilter({
     var dateFrom = getDate(value, 0);
     var dateTo = getDate(value, 1);
     setDateRange({ ...setDateRange, dateFrom: dateFrom, dateTo: dateTo });
-  }
+  };
 
   useEffect(() => {
     branchService
-      .getBranches("17379", "glpat-GPrQJsa8_WicT1Fo5Ve1")
+      .getBranches(projectId, accessToken)
       .then((brancheRes: Branch[]) => {
         setBranches(brancheRes);
         updateBranch(brancheRes.find((m: Branch) => m.default)?.name ?? "");

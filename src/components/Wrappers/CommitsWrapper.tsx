@@ -6,9 +6,9 @@ import CommitFilter from "../commitFilter/commitFilter";
 import "./Wrapper.css";
 
 export default function CommitsWrapper() {
+  const { projectId, accessToken } = useContext(GitlabContext);
   const [commits, setCommits] = useState<any[]>([]);
   const [branches, setBranches] = useState<any[]>([]);
-  const { projectId, accessToken } = useContext(GitlabContext);
   const [filter, setFilter] = useState<any>({
     branch: "",
   });
@@ -66,4 +66,18 @@ export default function CommitsWrapper() {
       </div>
     </div>
   );
+}
+
+export function validDate(
+  commitDate: string,
+  fromDate: string,
+  toDate: string
+) {
+  var date = Date.parse(commitDate);
+  var from = Date.parse(fromDate);
+  var to = Date.parse(toDate);
+  if (from <= date && date <= to) {
+    return true;
+  }
+  return false;
 }
