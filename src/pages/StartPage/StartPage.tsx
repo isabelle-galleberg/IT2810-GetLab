@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./StartPage.css";
 import Button from "../../components/Button/Button";
 import TextField from "../../components/TextField/TextField";
@@ -12,19 +12,28 @@ export default function StartPage() {
   const [errorMessage, setErrorMessage] = useState(false);
   const { projectId, setProjectId } = useContext(GitlabContext);
   const { apiSecret, setApiSecret } = useContext(GitlabContext);
+
+  const [localProjectId, setLocalProjectId] = useState<string | null>(null);
+  const [localApiSecret, setLocalApiSecret] = useState<string | null>(null);
+
   const credentialsInLocalStorage =
     localStorage.getItem("projectId") && localStorage.getItem("apiSecret");
   const navigate = useNavigate();
 
   // when changing text field, update name value and hide error message
-  const changeName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setProjectId(e.target.value);
+  const changeProjectId = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLocalProjectId(e.target.value);
     setErrorMessage(false);
   };
 
+  useEffect(() => {
+    setApiSecret("");
+    setProjectId("");
+  }, []);
+
   // when changing text field, update api value and hide error message
-  const changeApi = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setApiSecret(e.target.value);
+  const changeApiSecret = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLocalApiSecret(e.target.value);
     setErrorMessage(false);
   };
 
@@ -41,9 +50,11 @@ export default function StartPage() {
 
   function onConnect(e: any) {
     e.preventDefault();
-    if (projectId && apiSecret) {
-      localStorage.setItem("projectId", projectId);
-      localStorage.setItem("apiSecret", apiSecret);
+    if (localProjectId && localApiSecret) {
+      localStorage.setItem("projectId", localProjectId);
+      localStorage.setItem("apiSecret", localApiSecret);
+      setProjectId(localProjectId);
+      setApiSecret(localApiSecret);
     }
     connect(projectId, apiSecret);
   }
@@ -71,9 +82,12 @@ export default function StartPage() {
       <h3>Please enter your credentials</h3>
       <div className="formWrapper">
         <form>
-          <TextField onChange={changeName} placeholder="Project ID"></TextField>
           <TextField
-            onChange={changeApi}
+            onChange={changeProjectId}
+            placeholder="Project ID"
+          ></TextField>
+          <TextField
+            onChange={changeApiSecret}
             placeholder="Access token"
           ></TextField>
 

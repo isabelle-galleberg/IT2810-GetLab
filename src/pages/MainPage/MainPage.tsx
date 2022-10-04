@@ -10,7 +10,8 @@ import branchService from "../../services/branchService";
 import { useNavigate } from "react-router-dom";
 
 export default function MainPage() {
-  const { projectId, apiSecret } = useContext(GitlabContext);
+  const { projectId, apiSecret, setApiSecret, setProjectId } =
+    useContext(GitlabContext);
   const [value, setValue] = useState<string | null>(null);
   const navigate = useNavigate();
   const [pageinator, setPageinator] = useState<any>({
@@ -38,7 +39,19 @@ export default function MainPage() {
 
   useEffect(() => {
     // Validate credentials
-    branchService.getBranches(projectId, apiSecret).then((branches) => {
+    const lsApiSecret = localStorage.getItem("apiSecret");
+    const lsProjectId = localStorage.getItem("projectId");
+
+    if (!lsApiSecret || !lsProjectId) {
+      navigate("/");
+      return;
+    } else {
+      setApiSecret(lsApiSecret);
+      setProjectId(lsProjectId);
+    }
+
+    debugger;
+    branchService.getBranches(lsProjectId, lsApiSecret).then((branches) => {
       if (!branches) {
         navigate("/");
       }
