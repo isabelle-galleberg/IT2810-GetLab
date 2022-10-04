@@ -124,6 +124,11 @@ References:
 ### Screen recodings UI testing
 
 #### Computer
+![computer](/uploads/224990d7262e8c3477e02aa433809947/computer.mov)
 
-![pc](/uploads/1887223fff0ab0d3cd95c52aa296f94c/pc.mov)
-TODO: vidoes for testing when UI is finished.
+#### Iphone vertical
+![iPhone-vertical](/uploads/18284410be138e322dc1feb557ca4080/iPhone-vertical.mov)
+
+#### Iphone horizontal
+![computer](/uploads/224990d7262e8c3477e02aa433809947/computer.mov)
+
