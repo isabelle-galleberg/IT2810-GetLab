@@ -83,3 +83,17 @@ export default function CommitsWrapper({ pageinator, setPageinator }: any) {
     </div>
   );
 }
+
+export function validDate(
+  commitDate: string,
+  fromDate: string,
+  toDate: string
+) {
+  var date = Date.parse(commitDate);
+  var from = Date.parse(fromDate);
+  var to = Date.parse(toDate);
+  if (from <= date && date <= to) {
+    return true;
+  }
+  return false;
+}
