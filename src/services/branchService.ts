@@ -23,7 +23,7 @@ async function getBranches(
         response_size = response_data.length;
         data = data.concat(response_data);
         page++;
-      } else return null;
+      } else return [];
     }
     return data;
   } catch (error) {
