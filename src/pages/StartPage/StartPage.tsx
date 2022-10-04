@@ -84,7 +84,7 @@ export default function StartPage() {
         <form>
           <TextField
             onChange={changeProjectId}
-            placeholder="Project ID"
+            placeholder="Project Id"
           ></TextField>
           <TextField
             onChange={changeAccessToken}
